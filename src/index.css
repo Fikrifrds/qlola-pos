@@ -1,0 +1,69 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: lightgray;
+}
+
+
+button {
+  font: inherit;
+  padding: 0.25rem 0.5rem;
+  background: #00179b;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:hover,
+/* button:active {
+  background: #df6d02;
+} */
+
+.pointer {
+  cursor: pointer;
+}
+
+/* .list {
+  display: flex;
+  flex-direction: column;
+  border: solid 1px red
+} */
+
+.success-sale {
+  display: 'flex';
+  flex-direction:'column';
+  justify-content:'center';
+  align-items: center;
+}
+
+
+.button-primary-contained {
+  border-radius: 5px;
+  background-color: #2a3eb1;
+  padding: 15px;
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  max-width: 300px;
+  cursor: pointer;
+}
+
+.button-secondary-contained {
+  border-radius: 5px;
+  background-color: 
+  #f44336;
+  padding: 15px;
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  max-width: 300px;
+  cursor: pointer;
+}
