@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import MediaState from './context/MediaQueryContextProvider';
 import './index.css';
 import App from './App';
 
 ReactDOM.render(
-    <App />,
+ <MediaState>
+    <App />
+</MediaState>
+    ,
   document.getElementById('root')
 );
 

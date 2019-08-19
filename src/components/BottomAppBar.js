@@ -24,7 +24,7 @@ import CheckOut from'./CheckOut';
 import { withStyles } from '@material-ui/core/styles';
 import { ShopContext } from '../context/ShopContextProvider';
 import Badge from '@material-ui/core/Badge';
-import MediaQuery from 'react-responsive';
+import { MediaQueryContext } from '../context/MediaQueryContextProvider';
 
 // const Bottom = () => {
 //     const context = useContext(ShopContext);
@@ -84,6 +84,9 @@ const StyledBadge = withStyles(theme => ({
 }))(Badge);
 
 export default function BottomAppBar() {
+  const mediaContext = useContext(MediaQueryContext);
+  const {isDesktopOrLaptop, isBigScreen, isMobileDevicePortrait, isTabletOrMobileDevice, isPortrait, isRetina } = mediaContext.media;
+
   const classes = useStyles();
   const context = useContext(ShopContext);
   const price = context.cart.items.reduce((a,b) => a + b.price*b.quantity,0);
@@ -93,30 +96,29 @@ export default function BottomAppBar() {
     setOpen(true);
   }
 
-return(
-   <MediaQuery orientation="portrait">
-    {(matches) => {
   return (
       <AppBar position="fixed" className={classes.appBar}>
+        { isPortrait ? 
+          window.location.pathname === "/cart" ?
+          <NavLink to="/">
+            <Fab aria-label="close" className={classes.fabButton}>
+                <Close />
+            </Fab>
+          </NavLink> 
+          : window.location.pathname === "/" ? 
+          <NavLink to="/cart">
+            <Fab aria-label="shopping-cart" className={classes.fabButton}>
+              <StyledBadge badgeContent={context.cart.items.reduce((a,b) => a + b.quantity,0)} color="primary">
+                <ShoppingCart />
+              </StyledBadge>
+            </Fab>
+          </NavLink> 
+          :''
+        :''
+      }
         <Toolbar>
           <AppDrawer />
-          { matches ? 
-            window.location.pathname === "/cart" ?
-            <NavLink to="/">
-              <Fab aria-label="close" className={classes.fabButton}>
-                  <Close />
-              </Fab>
-            </NavLink> 
-            :
-            <NavLink to="/cart">
-              <Fab aria-label="shopping-cart" className={classes.fabButton}>
-                <StyledBadge badgeContent={context.cart.items.reduce((a,b) => a + b.quantity,0)} color="primary">
-                  <ShoppingCart />
-                </StyledBadge>
-              </Fab>
-            </NavLink> 
-            :''
-          }
+          
           
           <div className={classes.grow} />
           {/* <div>
@@ -128,7 +130,7 @@ return(
             <div onClick={ price ? openCheckOut : () => {}} className={`bottom-app ${ price ? 'bottom-app-active': ''}`}>
               <div style={{ cursor: `${price ? 'pointer' : 'not-allowed'}`}} className="charge-app-button">Pay Rp {price.toLocaleString('id')}</div>
             </div>
-        <CheckOut open={open} setOpen={setOpen} price={price} />
+        <CheckOut open={open} setOpen={setOpen} price={price} isMobileDevicePortrait={isMobileDevicePortrait} />
 
           {/* <IconButton color="inherit">
             <SearchIcon />
@@ -139,7 +141,4 @@ return(
         </Toolbar>
       </AppBar>
   )
-  }}
-  </MediaQuery>
-);
 }

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from '../context/ShopContextProvider';
+import { MediaQueryContext } from '../context/MediaQueryContextProvider';
 import './Cart.css';
 import ItemCart from '../components/ItemCart';
 import EditItem from '../components/EditItem';
@@ -29,6 +30,8 @@ const CartPage = props => {
   const classes = useStyles();
 
   const context = useContext(ShopContext);
+  const mediaContext = useContext(MediaQueryContext);
+  const media = mediaContext.media;
   const [ currentItem, setCurrentItem ] = useState({ product: {}});
 
   const [open, setOpen] = useState(false);
@@ -43,8 +46,8 @@ const CartPage = props => {
 
     return (
       <React.Fragment>
-      <Paper className={classes.paper}>
-      <TopCart billLength={context.bills.length}/>
+      <Paper className={classes.paper} style={{ marginBottom: '175px'}}>
+      <TopCart billLength={context.bills.length} media={media} />
         <main className="cart">
         <div style={{ textAlign: 'center', fontWeight: 'bold'}}>{ context.cart.name }</div>
           {context.cart.items.length <= 0 && <p>No Item in the Cart!</p>}
@@ -58,7 +61,7 @@ const CartPage = props => {
           <EditItem open={open} setOpen={setOpen} currentItem={currentItem} />
         </main>
         <div style={{ paddingTop: '80px'}}>
-        <BottomCart />
+        <BottomCart media={media} />
         </div>
         </Paper>
       </React.Fragment>

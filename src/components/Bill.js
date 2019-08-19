@@ -7,9 +7,14 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import Divider from '@material-ui/core/Divider';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { ShopContext } from '../context/ShopContextProvider'
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
+import Close from '@material-ui/icons/Close';
+import IconButton from '@material-ui/core/IconButton';
 
-export default function Bill({ open, setOpen }) {
-
+export default function Bill({ open, setOpen, media }) {
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const context = useContext(ShopContext)
 
   function handleClose() {
@@ -39,19 +44,25 @@ export default function Bill({ open, setOpen }) {
         aria-describedby="alert-dialog-description"
         scroll={scroll}
         fullWidth={fullWidth}
+        fullScreen={fullScreen}
         maxWidth={maxWidth}
       >
-        <DialogActions style={{ display: 'flex', justifyContent:'space-around', flexWrap:'wrap'}}>
+        <DialogActions style={{ display: 'flex', justifyContent:'space-between', flexWrap:'wrap', margin: '0 30px 0 30px'}}>
+        { media.isMobileDevicePortrait ?
+            <IconButton onClick={handleClose} variant="outlined" color="primary">
+              <Close />
+          </IconButton> :
           <Button onClick={handleClose} variant="outlined" color="primary">
             Cancel
           </Button>
+        }
           <DialogTitle id="scroll-dialog-title">
           <strong>
           Bill Aktif ({context.bills.length})
           </strong>
           </DialogTitle>
           <Button variant="contained" color="primary" onClick={saveCartToBill} disabled={ context.cart._id ? false : true}>
-            { context.cart.name ? 'Simpan' : 'Tambah' }
+            { context.cart.name ? 'Save' : 'Add' }
           </Button>
         </DialogActions>
         <Divider />

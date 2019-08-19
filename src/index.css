@@ -67,3 +67,8 @@ button:hover,
   max-width: 300px;
   cursor: pointer;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

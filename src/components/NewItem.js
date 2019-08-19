@@ -4,23 +4,32 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
+import Close from '@material-ui/icons/Close';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
 import Slide from '@material-ui/core/Slide';
 import { ShopContext } from '../context/ShopContextProvider';
+import { MediaQueryContext } from '../context/MediaQueryContextProvider';
 import ChooseModifier from './ChooseModifier';
 import ChooseVariantV2 from './ChooseVariantV2';
 import InputQuantity from './InputQuantity';
 import InputNote from './InputNote';
 import uuid from "uuid";
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 export default function NewItem({ open, setOpen, product }) {
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const context = useContext(ShopContext);
+  const mediaContext = useContext(MediaQueryContext);
+  const media = mediaContext.media;
   const [quantity, setQuantity] = useState(1);
   const [note, setNote] = useState('');
   const [variant, setVariant] = useState(null);
@@ -72,7 +81,7 @@ export default function NewItem({ open, setOpen, product }) {
 
     const scroll = 'paper';
     const fullWidth = true
-    const maxWidth = 'lg';
+    const maxWidth = 'sm';
 
   return (
     <div>
@@ -81,16 +90,22 @@ export default function NewItem({ open, setOpen, product }) {
         TransitionComponent={Transition}
         scroll={scroll}
         fullWidth={fullWidth}
+        fullScreen={fullScreen}
         maxWidth={maxWidth}
         onClose={handleClose}
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
-      <DialogActions style={{ display: 'flex', justifyContent:'space-around', flexWrap: 'wrap'}}>
+      <DialogActions style={{ display: 'flex', justifyContent:'space-between', flexWrap: 'wrap', margin: '0 30px 0 30px'}}>
+        { media.isMobileDevicePortrait ?
+          <IconButton onClick={handleClose} variant="outlined" color="primary">
+            <Close />
+          </IconButton> :
           <Button onClick={handleClose} variant="outlined" color="primary">
             Cancel
           </Button>
-          <DialogTitle id="scroll-dialog-title">
+        }
+          <DialogTitle id="scroll-dialog-title" style={{ fontSize: media.isMobileDevicePortrait }}>
           <strong>
           { product.name }
           </strong>
@@ -101,7 +116,7 @@ export default function NewItem({ open, setOpen, product }) {
           </strong>
         </DialogTitle>
           <Button onClick={handleSubmit} variant="contained" color="primary">
-            Simpan
+            Add
           </Button>
         </DialogActions>
         <Divider />
@@ -144,7 +159,7 @@ export default function NewItem({ open, setOpen, product }) {
           ''
           }
           
-          <InputQuantity quantity={quantity} setQuantity={setQuantity} />
+          <InputQuantity quantity={quantity} setQuantity={setQuantity} isMobileDevicePortrait={media.isMobileDevicePortrait} />
           <Divider />
           <InputNote note={note} setNote={setNote} />
       

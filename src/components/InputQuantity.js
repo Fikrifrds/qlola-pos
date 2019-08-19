@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function InputQuantity({ quantity, setQuantity, handleChange, defaultValue}) {
+export default function InputQuantity({ quantity, setQuantity, isMobileDevicePortrait, defaultValue}) {
   const classes = useStyles();
 
   const change = event => {
@@ -57,8 +57,8 @@ export default function InputQuantity({ quantity, setQuantity, handleChange, def
           variant="outlined"
           />
           <div className="button-group">
-            <div className="quantity-button quantity-outlined" onClick={() => quantity > 1 ? setQuantity( quantity - 1 ) : ''}><Remove /></div>
-            <div className="quantity-button quantity-outlined" onClick={() => setQuantity( quantity + 1 )}><Add /></div>
+            <div className={` ${isMobileDevicePortrait ? 'small-quantity-button' : 'quantity-button'} quantity-outlined`} onClick={() => quantity > 1 ? setQuantity( quantity - 1 ) : ''}><Remove /></div>
+            <div className={` ${isMobileDevicePortrait ? 'small-quantity-button' : 'quantity-button'} quantity-outlined`} onClick={() => setQuantity( quantity + 1 )}><Add /></div>
           </div>
         </div>
       </div>

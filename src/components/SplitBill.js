@@ -10,9 +10,14 @@ import RadioButtonUnchecked from '@material-ui/icons/RadioButtonUnchecked';
 import CheckCircle from '@material-ui/icons/CheckCircle';
 import { ShopContext } from '../context/ShopContextProvider'
 import CheckOutSplittedBill from './CheckOutSplittedBill';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
+import Close from '@material-ui/icons/Close';
+import IconButton from '@material-ui/core/IconButton';
 
-export default function SplitBill({ openSplitBill, setOpenSplitBill }) {
-
+export default function SplitBill({ openSplitBill, setOpenSplitBill, media }) {
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const context = useContext(ShopContext);
   const [openCheckOut, setOpenCheckOut ] = useState(false);
   const [splittedAmount, setSplittedAmount] = useState(0);
@@ -65,12 +70,18 @@ export default function SplitBill({ openSplitBill, setOpenSplitBill }) {
         aria-describedby="alert-dialog-description"
         scroll={scroll}
         fullWidth={fullWidth}
+        fullScreen={fullScreen}
         maxWidth={maxWidth}
       >
-        <DialogActions style={{ display: 'flex', justifyContent:'space-around', flexWrap: 'wrap'}}>
+        <DialogActions style={{ display: 'flex', justifyContent:'space-between', flexWrap: 'wrap', margin: '0 30px 0 30px'}}>
+        { media.isMobileDevicePortrait ?
+            <IconButton onClick={handleCloseSplitBill} variant="outlined" color="primary">
+              <Close />
+          </IconButton> :
           <Button onClick={handleCloseSplitBill} variant="outlined" color="primary">
             Cancel
           </Button>
+        }
           <DialogTitle id="scroll-dialog-title">
           <strong>
           Pisah Bill

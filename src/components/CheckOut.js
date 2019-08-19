@@ -9,7 +9,10 @@ import Divider from '@material-ui/core/Divider';
 import Slide from '@material-ui/core/Slide';
 import { ShopContext } from '../context/ShopContextProvider';
 import ChooseCashAmountV2 from './ChooseCashAmountV2';
-
+import Close from '@material-ui/icons/Close';
+import IconButton from '@material-ui/core/IconButton';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
 import Success from './Success';
 
 import uuid from "uuid";
@@ -18,7 +21,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function CheckOut({ open, setOpen, price }) {
+export default function CheckOut({ open, setOpen, price, isMobileDevicePortrait }) {
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
     const context = useContext(ShopContext);
   const [cash, setCash] = useState(null);
   const [cashInput, setCashInput] = useState('');
@@ -55,15 +60,21 @@ export default function CheckOut({ open, setOpen, price }) {
         TransitionComponent={Transition}
         scroll={scroll}
         fullWidth={fullWidth}
+        fullScreen={fullScreen}
         maxWidth={maxWidth}
         onClose={handleClose}
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
       <DialogActions style={{ display: 'flex', justifyContent:'space-around'}}>
+        { isMobileDevicePortrait ?
+            <IconButton onClick={handleClose} variant="outlined" color="primary">
+              <Close />
+          </IconButton> :
           <Button onClick={handleClose} variant="outlined" color="primary">
             Cancel
           </Button>
+        }
           <DialogTitle id="scroll-dialog-title">
           <strong>
           Rp { price.toLocaleString('id') }

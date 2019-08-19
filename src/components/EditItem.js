@@ -10,17 +10,25 @@ import Slide from '@material-ui/core/Slide';
 import ChooseVariantV2 from './ChooseVariantV2';
 import ChooseModifier from './ChooseModifier';
 import { ShopContext } from '../context/ShopContextProvider';
+import IconButton from '@material-ui/core/IconButton';
+import Close from '@material-ui/icons/Close';
 
 import InputQuantity from './InputQuantity';
 import InputNote from './InputNote';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
+import { MediaQueryContext } from '../context/MediaQueryContextProvider';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 const EditItem = ({ open, setOpen, currentItem }) => {
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const context = useContext(ShopContext);
-  
+  const mediaContext = useContext(MediaQueryContext);
+  const media = mediaContext.media;
   const [quantity, setQuantity] = useState(currentItem.quantity);
   const [note, setNote] = useState(currentItem.note);
   const [variant, setVariant] = useState(currentItem.variant);
@@ -85,15 +93,21 @@ const EditItem = ({ open, setOpen, currentItem }) => {
         TransitionComponent={Transition}
         scroll={scroll}
         fullWidth={fullWidth}
+        fullScreen={fullScreen}
         maxWidth={maxWidth}
         onClose={handleClose}
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
-      <DialogActions style={{ display: 'flex', justifyContent:'space-around'}}>
+      <DialogActions style={{ display: 'flex', justifyContent:'space-between', flexWrap: 'wrap', margin: '0 30px 0 30px'}}>
+      { media.isMobileDevicePortrait ?
+          <IconButton onClick={handleClose} variant="outlined" color="primary">
+            <Close />
+          </IconButton> :
           <Button onClick={handleClose} variant="outlined" color="primary">
             Cancel
           </Button>
+        }
           <DialogTitle id="scroll-dialog-title">
           <strong>
           { currentItem.product.name }
@@ -105,7 +119,7 @@ const EditItem = ({ open, setOpen, currentItem }) => {
           </strong>
           </DialogTitle>
           <Button onClick={handleUpdate} variant="contained" color="primary">
-            Simpan
+            Save
           </Button>
       </DialogActions>
       <Divider />

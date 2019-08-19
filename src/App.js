@@ -13,6 +13,7 @@ import './App.css';
 import Snackbars from './components/Snackbars';
 
 const App = props => {
+
     return (
       <GlobalState>
       <ShopState>
@@ -35,6 +36,7 @@ const App = props => {
         </ProductState>
       </ShopState>
       </GlobalState>
+
     );
 }
 

@@ -16,7 +16,7 @@ const StyledBadge = withStyles(theme => ({
   },
 }))(Badge);
 
-export default function TopCart({ billLength }){
+export default function TopCart({ billLength, media }){
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -39,7 +39,7 @@ export default function TopCart({ billLength }){
               </StyledBadge>
                 
               </IconButton>
-              <Bill open={open} setOpen={setOpen} />
+              <Bill open={open} setOpen={setOpen} media={media} />
             </div>
           </div>
       </div>

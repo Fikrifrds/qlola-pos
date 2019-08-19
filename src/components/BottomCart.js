@@ -9,7 +9,7 @@ import { ShopContext } from '../context/ShopContextProvider';
 import CheckOut from './CheckOut';
 import SplitBill from './SplitBill';
 
-export default function BottomCart(){
+export default function BottomCart({ media }){
   const context = useContext(ShopContext);
   // const price = context.cart.items.reduce((a,b) => a + b.price*b.quantity,0);
 
@@ -37,7 +37,7 @@ export default function BottomCart(){
           <IconButton aria-label="Split" title="Split Bill" onClick={ () => setOpenSplitBill(true)}>
             <HorizontalSplit />
           </IconButton>
-          <SplitBill openSplitBill={openSplitBill} setOpenSplitBill={setOpenSplitBill} />
+          <SplitBill openSplitBill={openSplitBill} setOpenSplitBill={setOpenSplitBill} media={media} />
           <IconButton aria-label="Delete" title="Empty Cart" onClick={removeItemsInCart}>
             <RemoveShoppingCart />
           </IconButton>

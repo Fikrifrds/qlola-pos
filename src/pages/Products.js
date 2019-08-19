@@ -22,6 +22,7 @@ import FormatListBulleted from '@material-ui/icons/FormatListBulleted';
 import { makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import uuid from 'uuid';
+import { MediaQueryContext } from '../context/MediaQueryContextProvider';
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -35,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(4),
   },
   cardGrid: {
-    paddingTop: theme.spacing(8),
+    paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(8),
   },
   card: {
@@ -61,6 +62,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ProductsPage = props => {
+  const mediaContext = useContext(MediaQueryContext);
+  const {isDesktopOrLaptop, isBigScreen, isTabletOrMobile, isTabletOrMobileDevice, isPortrait, isRetina } = mediaContext.media;
+
   const context = useContext(ProductContext);
   const globalContext = useContext(GlobalContext);
   const shopContext = useContext(ShopContext);
@@ -105,25 +109,12 @@ const ProductsPage = props => {
     }
 
     return (
-   
-   
-      // {(matches) => {
-      //   if (matches) {
-      //     return <div>Media query matches!</div>;
-      //   } else {
-      //     return <div>Media query does not match!</div>;
-      //   }
-      // }}
-    
-    <MediaQuery orientation="landscape">
-    {(matches) => {
-      return(
           <React.Fragment>
           <CssBaseline />
           <main>
         <Container className={classes.cardGrid} maxWidth="lg">
           <Grid container spacing={2}>
-          <Grid item xs={ matches ? 7 : 12 }>
+          <Grid item xs={ !isPortrait ? 7 : 12 }>
             <div style={{ display:'flex', justifyContent: 'space-between', paddingBottom: '15px'}}>
               <div>
                 {/* <SearchBox width="200px"/> */}
@@ -164,9 +155,9 @@ const ProductsPage = props => {
           }
           <NewItem product={clickedItem} open={open} setOpen={setOpen} />
         </Grid>
-        { matches ? 
+        { !isPortrait ? 
           <Grid item xs={5} >
-          <CartPage />
+              <CartPage />
         </Grid> :''
         }
         
@@ -175,12 +166,7 @@ const ProductsPage = props => {
         </Container>
         </main>
           </React.Fragment>
-      )
-        }}
-          </MediaQuery>
-        
-      
-    );
+      )        
   }
 
 export default ProductsPage;

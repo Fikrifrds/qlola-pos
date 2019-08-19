@@ -8,11 +8,12 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ExitToApp from '@material-ui/icons/ExitToApp';
+import DesktopMac from '@material-ui/icons/DesktopMac';
 import Settings from '@material-ui/icons/Settings';
 import TrendingUp from '@material-ui/icons/TrendingUp';
 import MailIcon from '@material-ui/icons/Mail';
 import IconButton from '@material-ui/core/IconButton';
-
+import { Link } from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles({
@@ -44,10 +45,13 @@ export default function AppDrawer() {
       onKeyDown={toggleDrawer(false)}
     >
     <List>
-          <ListItem button>
-            <ListItemIcon><ExitToApp /></ListItemIcon>
-            <ListItemText primary={'Log Out'} />
-          </ListItem>
+    <Link to="">
+      <ListItem button>
+        <ListItemIcon><DesktopMac /></ListItemIcon>
+        <ListItemText primary={'Point Of Sale'} />
+        
+      </ListItem>
+    </Link>
           <ListItem button>
             <ListItemIcon><TrendingUp /></ListItemIcon>
             <ListItemText primary={'Transactions'} />
