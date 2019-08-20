@@ -22,7 +22,7 @@ const CACHE_NAME = 'static-cache-v1';
 
 // CODELAB: Add list of files to cache here.
 const FILES_TO_CACHE = [
-  '/offline.html',
+  './offline.html',
 ];
 
 self.addEventListener('install', (evt) => {
