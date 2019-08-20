@@ -84,13 +84,13 @@ export default function SplitBill({ openSplitBill, setOpenSplitBill, media }) {
         }
           <DialogTitle id="scroll-dialog-title">
           <strong>
-          Pisah Bill
+          Split Bill
           </strong>
           </DialogTitle>
           <Button variant="contained" color="primary" 
           disabled={ splittemItems.length ? false : true} 
           onClick = {splitBill} >
-            Pisahkan
+            Split
           </Button>
         </DialogActions>
         <Divider />
