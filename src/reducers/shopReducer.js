@@ -204,7 +204,9 @@ export const CREATE_SPLITTED_SALE = 'CREATE_SPLITTED_SALE';
         const result = await item.json();
         console.log(result)
       } catch(err) {
-        console.log('error')
+        let sales = localStorage.getItem('sales') || [];
+        sales.push(state.cart)
+        localStorage.setItem('sales', sales)
       }
     }
     
