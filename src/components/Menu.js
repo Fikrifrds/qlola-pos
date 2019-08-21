@@ -56,7 +56,7 @@ export default function Menu() {
         
         <ListItemText >
           <small>{shopContext.sales.length } transaksi belum terupdate</small><br/>
-          <Button size="small" variant="contained" color="primary">Update</Button>
+          <Button onClick={e => e.preventDefault() } size="small" variant="contained" color="primary">Update</Button>
         </ListItemText>
       </ListItem>
     <Divider />
