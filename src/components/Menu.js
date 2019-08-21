@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
@@ -30,7 +30,13 @@ export default function Menu() {
   const shopContext = useContext(ShopContext);
 
   const classes = useStyles();
+
+  const [sales, setSales] = useState(shopContext.sales);
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    setSales(shopContext.sales);
+  }, [shopContext.createSale])
 
   const toggleDrawer = (open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -55,7 +61,7 @@ export default function Menu() {
       <ListItem>
         
         <ListItemText >
-          <small>{shopContext.sales.length } transaksi belum terupdate</small><br/>
+          <small>{ sales.length } transaksi belum terupdate</small><br/>
           <Button onClick={e => e.preventDefault() } size="small" variant="contained" color="primary">Update</Button>
         </ListItemText>
       </ListItem>
