@@ -187,7 +187,7 @@ export const CREATE_SPLITTED_SALE = 'CREATE_SPLITTED_SALE';
     return { ...state, cart: bill  };
   };
 
-  const createSale = state => {
+  const createSale = async state => {
     const updatedBills = [...state.bills];
     const updatedBillIndex = updatedBills.findIndex(
       item => item._id === state.cart._id
@@ -197,6 +197,16 @@ export const CREATE_SPLITTED_SALE = 'CREATE_SPLITTED_SALE';
       localStorage.setItem('bills', JSON.stringify(updatedBills));
     }
     localStorage.removeItem('carts');
+    
+    console.log('tes')
+    // try {
+    //   const item = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+    //   const result = await item.json;
+    //   console.log(result)
+    // } catch(err) {
+    //   console.log('error')
+    // }
+    console.log({ ...state, cart: { items: [], _id: null, name:null}, bills: updatedBills})
     return { ...state, cart: { items: [], _id: null, name:null}, bills: updatedBills};
   }
 
