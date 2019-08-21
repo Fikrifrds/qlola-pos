@@ -15,15 +15,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License
  */
-'use strict';
-
+/* eslint-disable */
 // CODELAB: Update cache names any time any of the cached files change.
 const CACHE_NAME = 'static-cache-v1';
 
 // CODELAB: Add list of files to cache here.
 const FILES_TO_CACHE = [
-  '%PUBLIC_URL%/offline.html',
-  '%PUBLIC_URL%/qlola.ico'
+  '/index.html',
+  '/qlola.ico'
 ];
 
 self.addEventListener('install', (evt) => {
