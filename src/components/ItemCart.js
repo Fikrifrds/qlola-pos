@@ -2,7 +2,7 @@ import React, { useState,useContext } from 'react';
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 import { makeStyles } from '@material-ui/core/styles';
 import { ShopContext } from '../context/ShopContextProvider';
-
+import Chip from '@material-ui/core/Chip';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -41,7 +41,7 @@ console.log('itemcart', context)
             </div>
         </div>
         <div><strong>x{cartItem.quantity}</strong></div>
-        <div><strong> { (cartItem.price*cartItem.quantity).toLocaleString('id')} </strong></div>            
+        <div style={{ color: 'red'}}><strong>{ (cartItem.price*cartItem.quantity).toLocaleString('id')}</strong></div>            
         
         
     </div>

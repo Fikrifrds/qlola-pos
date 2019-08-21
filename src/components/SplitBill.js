@@ -54,8 +54,9 @@ export default function SplitBill({ openSplitBill, setOpenSplitBill, media }) {
     setSplittedAmount(0);
   }
 
-  const splitBill =() => {
-    setOpenCheckOut(true);
+  const splitBill = ids => {
+    context.createSplittedSale(ids);
+    handleCloseSplitBill()
   }
   const scroll = 'paper';
     const fullWidth = true
@@ -89,7 +90,7 @@ export default function SplitBill({ openSplitBill, setOpenSplitBill, media }) {
           </DialogTitle>
           <Button variant="contained" color="primary" 
           disabled={ splittemItems.length ? false : true} 
-          onClick = {splitBill} >
+          onClick = {() => splitBill(splittemItems)} >
             Split
           </Button>
         </DialogActions>

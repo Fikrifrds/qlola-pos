@@ -218,37 +218,50 @@ export const CREATE_SPLITTED_SALE = 'CREATE_SPLITTED_SALE';
 const createSplittedSale = (_ids, state) => {
   
   let updatedCart = state.cart;
+  let updatedBills = [...state.bills];
 
-  // let updatedBills = state.bills;
-  // const updatedBillIndex = updatedBills.findIndex(
-  //   item => item._id === updatedCart._id
-  // );
-  // if(updatedBillIndex >= 0){
-  //   for (let id of _ids){
-  //     const updatedItemIndex = updatedBills[updatedBillIndex].items.findIndex(
-  //         item => item._id === id
-  //     );
-  //     if(updatedItemIndex >= 0){
-  //       updatedBills[updatedBillIndex].items.splice(updatedItemIndex, 1);
-        
-  //     }
-  //   }
-    
-    
-  // }
-
+  const updatedBillIndex = updatedBills.findIndex(
+    item => item._id === updatedCart._id
+  );
+  
+  let arr = [];
   for (let id of _ids){
       const updatedItemIndex = updatedCart.items.findIndex(
           item => item._id === id
       );
       if(updatedItemIndex >= 0){
-        updatedCart.items.splice(updatedItemIndex, 1);
+        arr.push(updatedCart.items[updatedItemIndex]);
+        
       }
-    
   }
   
+  const name = prompt("Please enter bill name");
+    if(name){
+      const cart = {
+        _id: uuid.v4(),
+        items: arr,
+        name: name
+      }
+      updatedBills.push(cart);
+    } else {
+      return state
+    }
+    
+  
+  for (let id of _ids){
+    const updatedItemIndex = updatedCart.items.findIndex(
+      item => item._id === id
+  );
+    updatedCart.items.splice(updatedItemIndex, 1);
+  }
+
+  if(updatedBillIndex >= 0){
+    updatedBills[updatedBillIndex] = updatedCart;
+  }
+
   localStorage.setItem('carts', JSON.stringify(updatedCart));
-  return { ...state, cart: updatedCart};
+  localStorage.setItem('bills', JSON.stringify(updatedBills));
+  return { ...state, cart: updatedCart, bills:updatedBills};
 }
 
 export const shopReducer = (state, action) => {

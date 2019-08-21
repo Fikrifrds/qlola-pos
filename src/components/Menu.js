@@ -50,7 +50,7 @@ export default function Menu() {
     <div
       className={classes.list}
       role="presentation"
-      onClick={toggleDrawer(false)}
+      
       onKeyDown={toggleDrawer(false)}
     >
     <List>
@@ -58,6 +58,7 @@ export default function Menu() {
         <ListItemIcon><AccountCircle /></ListItemIcon>
         <ListItemText primary={'Outlet 1'} />
       </ListItem>
+
       <ListItem>
         
         <ListItemText >
@@ -66,7 +67,7 @@ export default function Menu() {
         </ListItemText>
       </ListItem>
     <Divider />
-
+<div onClick={toggleDrawer(false)}>
     <Link to="">
       <ListItem button>
         <ListItemIcon><DesktopMac /></ListItemIcon>
@@ -82,15 +83,16 @@ export default function Menu() {
             <ListItemIcon><Settings /></ListItemIcon>
             <ListItemText primary={'Settings'} />
           </ListItem>
-          
-      </List>
+           
+      
       <Divider />
-      <List>
+      
           <ListItem button>
             <ListItemIcon><ExitToApp /></ListItemIcon>
             <ListItemText primary={'Log Out'} />
           </ListItem>
-      </List>
+          </div> 
+          </List>
     </div>
   );
 
