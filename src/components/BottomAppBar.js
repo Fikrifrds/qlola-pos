@@ -18,7 +18,7 @@ import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import Close from '@material-ui/icons/Close';
 import SearchIcon from '@material-ui/icons/Search';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import AppDrawer from './AppDrawer';
+import Menu from './Menu';
 import SearchBox from './SearchBox';
 import CheckOut from'./CheckOut';
 import { withStyles } from '@material-ui/core/styles';
@@ -117,7 +117,7 @@ export default function BottomAppBar() {
         :''
       }
         <Toolbar>
-          <AppDrawer />
+          <Menu />
           
           
           <div className={classes.grow} />

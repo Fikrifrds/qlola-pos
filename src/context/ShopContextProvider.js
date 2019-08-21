@@ -19,7 +19,8 @@ const ShopContextProvider = props => {
     [], () => {
     const carts = localStorage.getItem('carts');
     const bills = localStorage.getItem('bills');
-    return { cart : carts ? JSON.parse(carts) : { items: [] }, bills: bills ? JSON.parse(bills) : [] }
+    const sales = localStorage.getItem('sales');
+    return { cart : carts ? JSON.parse(carts) : { items: [] }, bills: bills ? JSON.parse(bills) : [], sales: sales ? JSON.parse(sales) : [] }
   });
 
   const addProductToCart = product => {
@@ -61,6 +62,7 @@ const ShopContextProvider = props => {
           _id: cartState._id,
           cart: cartState.cart,
           bills: cartState.bills,
+          sales: cartState.sales,
           addProductToCart: addProductToCart,
           removeProductFromCart: removeProductFromCart,
           removeProductsInCart: removeProductsInCart,
