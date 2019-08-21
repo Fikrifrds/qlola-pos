@@ -42,8 +42,6 @@ console.log('itemcart', context)
         </div>
         <div><strong>x{cartItem.quantity}</strong></div>
         <div style={{ color: 'red'}}><strong>{ (cartItem.price*cartItem.quantity).toLocaleString('id')}</strong></div>            
-        
-        
     </div>
     )
     
