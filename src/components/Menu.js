@@ -16,7 +16,10 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
-import  { ShopContext } from '../context/ShopContextProvider'
+import  { ShopContext } from '../context/ShopContextProvider';
+import Avatar from '@material-ui/core/Avatar';
+import { deepOrange, deepPurple } from '@material-ui/core/colors';
+
 const useStyles = makeStyles({
   list: {
     width: 250,
@@ -24,6 +27,24 @@ const useStyles = makeStyles({
   fullList: {
     width: 'auto',
   },
+  avatar: {
+    margin: 10,
+  },
+  orangeAvatar: {
+    marginRight: 10,
+    color: '#fff',
+    backgroundColor: deepOrange[500],
+  },
+  purpleAvatar: {
+    margin: 10,
+    color: '#fff',
+    backgroundColor: deepPurple[500],
+  },
+  bigAvatar: {
+    margin: 10,
+    width: 60,
+    height: 60,
+  }
 });
 
 export default function Menu() {
@@ -55,8 +76,12 @@ export default function Menu() {
     >
     <List>
       <ListItem>
-        <ListItemIcon><AccountCircle /></ListItemIcon>
-        <ListItemText primary={'Outlet 1'} />
+      <Avatar className={classes.orangeAvatar}>V</Avatar>
+        <ListItemText>
+          Vicky<br/>
+          <small>Outlet 1</small>
+          </ListItemText>
+        
       </ListItem>
 
       <ListItem>
