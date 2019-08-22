@@ -84,13 +84,13 @@ export default function Menu() {
         
       </ListItem>
 
-      <ListItem>
+      {/* <ListItem>
         
         <ListItemText >
           <small>{ sales.length } transaksi belum terupdate</small><br/>
           <Button onClick={e => e.preventDefault() } size="small" variant="contained" color="primary">Update</Button>
         </ListItemText>
-      </ListItem>
+      </ListItem> */}
     <Divider />
 <div onClick={toggleDrawer(false)}>
     <Link to="">
