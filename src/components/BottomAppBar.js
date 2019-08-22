@@ -86,7 +86,7 @@ const StyledBadge = withStyles(theme => ({
 export default function BottomAppBar() {
   const mediaContext = useContext(MediaQueryContext);
   const {isDesktopOrLaptop, isBigScreen, isMobileDevicePortrait, isTabletOrMobileDevice, isPortrait, isRetina } = mediaContext.media;
-
+  const pages = ['/', '/cart']
   const classes = useStyles();
   const context = useContext(ShopContext);
   const price = context.cart.items.reduce((a,b) => a + b.price*b.quantity,0);
@@ -127,10 +127,12 @@ export default function BottomAppBar() {
           </Typography>
             </div> */}
 
-            <div onClick={ price ? openCheckOut : () => {}} className={`bottom-app ${ price ? 'bottom-app-active': ''}`}>
+          <div onClick={ price ? openCheckOut : () => {}} className={`bottom-app ${ price ? 'bottom-app-active': ''}`}>
               <div style={{ cursor: `${price ? 'pointer' : 'not-allowed'}`}} className="charge-app-button">Pay Rp {price.toLocaleString('id')}</div>
             </div>
         <CheckOut open={open} setOpen={setOpen} price={price} isMobileDevicePortrait={isMobileDevicePortrait} />
+
+            
 
           {/* <IconButton color="inherit">
             <SearchIcon />
