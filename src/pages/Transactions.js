@@ -113,10 +113,7 @@ const ProductsPage = props => {
           <main>
         <Container className={classes.cardGrid} maxWidth="lg">
           <Grid container spacing={2}>
-          <ReactTable
-    data={data}
-    columns={columns}
-  />
+
         </Grid>
         
         </Container>
