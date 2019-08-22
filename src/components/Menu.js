@@ -100,15 +100,18 @@ export default function Menu() {
         
       </ListItem>
     </Link>
+    <Link to="/transactions">
           <ListItem button>
             <ListItemIcon><TrendingUp /></ListItemIcon>
             <ListItemText primary={'Transactions'} />
           </ListItem>
+    </Link>
+    <Link to="/settings">
           <ListItem button>
             <ListItemIcon><Settings /></ListItemIcon>
             <ListItemText primary={'Settings'} />
           </ListItem>
-           
+    </Link>
       
       <Divider />
       

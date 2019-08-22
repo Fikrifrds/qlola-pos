@@ -7,6 +7,8 @@ import ProductState from './context/ProductContextProvider';
 import MainNavigation from './components/MainNavigation'
 import ProductsPage from './pages/Products';
 import CartPage from './pages/Cart';
+import Transactions from './pages/Transactions';
+import Settings from './pages/Settings';
 import Example from './pages/Example';
 import BottomAppBar from './components/BottomAppBar'
 import './App.css';
@@ -27,6 +29,8 @@ const App = props => {
             <Route path="/" component={ProductsPage} exact />
             <Route path="/example" component={Example} exact />
             <Route path="/cart" component={CartPage} exact />
+            <Route path="/transactions" component={Transactions} exact />
+            <Route path="/settings" component={Settings} exact />
             
           </Switch>
           <BottomAppBar />
