@@ -18,6 +18,7 @@ import InputNote from './InputNote';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import { MediaQueryContext } from '../context/MediaQueryContextProvider';
+import shorten from '../formula/nameShorten';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -110,7 +111,7 @@ const EditItem = ({ open, setOpen, currentItem }) => {
         }
           <DialogTitle id="scroll-dialog-title">
           <strong>
-          { currentItem.product.name }
+            { media.isMobileDevicePortrait ? shorten(currentItem.product.name, 10) : shorten(currentItem.product.name, 17) }
           </strong>
           </DialogTitle>
           <DialogTitle id="scroll-dialog-title">
@@ -157,6 +158,7 @@ const EditItem = ({ open, setOpen, currentItem }) => {
           <InputQuantity 
           quantity = {quantity} 
           setQuantity={setQuantity} 
+          isMobileDevicePortrait={media.isMobileDevicePortrait}
           />
         <Divider />
           <InputNote

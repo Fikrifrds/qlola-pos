@@ -19,6 +19,7 @@ import InputNote from './InputNote';
 import uuid from "uuid";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
+import shorten from '../formula/nameShorten';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -96,7 +97,7 @@ export default function NewItem({ open, setOpen, product }) {
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
-      <DialogActions style={{ display: 'flex', justifyContent:'space-between', flexWrap: 'wrap', margin: '0 30px 0 30px'}}>
+      <DialogActions style={{ display: 'flex', justifyContent:'space-between', flexWrap: 'wrap', margin: '10px 20px 10px 20px', fontSize: media.isMobileDevicePortrait ? '15px' : '18px' }}>
         { media.isMobileDevicePortrait ?
           <IconButton onClick={handleClose} variant="outlined" color="primary">
             <Close />
@@ -105,16 +106,16 @@ export default function NewItem({ open, setOpen, product }) {
             Cancel
           </Button>
         }
-          <DialogTitle id="scroll-dialog-title" style={{ fontSize: media.isMobileDevicePortrait }}>
+          <div id="scroll-dialog-title">
           <strong>
-          { product.name }
+          { media.isMobileDevicePortrait ? shorten(product.name, 10) : shorten(product.name, 17) }
           </strong>
-          </DialogTitle>
-          <DialogTitle id="scroll-dialog-title">
+          </div>
+          <div id="scroll-dialog-title">
           <strong>
           Rp { ( (variantPrice + extra)*quantity ).toLocaleString('id') }
           </strong>
-        </DialogTitle>
+        </div>
           <Button onClick={handleSubmit} variant="contained" color="primary">
             Add
           </Button>

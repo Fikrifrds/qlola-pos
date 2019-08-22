@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import { MediaQueryContext } from '../context/MediaQueryContextProvider';
+import shorten from '../formula/nameShorten';
 
 const useStyles = makeStyles({
   card: {
@@ -23,6 +25,8 @@ const useStyles = makeStyles({
 });
 
 export default function ItemCard( { product, onclick }) {
+  const mediaContext = useContext(MediaQueryContext);
+  const media = mediaContext.media;
   const classes = useStyles();
 
   return (
@@ -35,7 +39,7 @@ export default function ItemCard( { product, onclick }) {
       />
 
         <Typography className={classes.title} gutterBottom>
-          {product.name}
+          { media.isMobileDeviceLanscape ? shorten(product.name, 10) : shorten(product.name, 17)}
         </Typography>
 
       </Card>

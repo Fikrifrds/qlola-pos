@@ -19,7 +19,7 @@ const products = [
   variantDefault: '111', 
   description: 'Let Google help apps determine location.' 
 },
-  { _id: '2bb', name: 'Sandwich', price: 30000, imgUrl: imgUrl2, hasVariant: true, 
+  { _id: '2bb', name: 'Chicken Sandwich', price: 30000, imgUrl: imgUrl2, hasVariant: true, 
   category: 'snack',
   variant: { 'www' : { label: 'Double', price: 25000}, 'aaa': { label: 'Triple', price: 40000} }, 
   variantDefault: 'www', description: 'Let Google help apps determine location.',
@@ -36,7 +36,7 @@ const products = [
   hasModifier: false,
   category: 'tea',
   variant: {}, variantDefault: '', description: 'Let Google help apps determine location.' },
-  { _id: '4dd', name: 'Cappuccino', price: 40000, imgUrl: imgUrl4, 
+  { _id: '4dd', name: 'Cappuccino Extra Coffee', price: 40000, imgUrl: imgUrl4, 
   hasVariant: false, 
   category: 'coffee',
   description: 'Let Google help apps determine location.',

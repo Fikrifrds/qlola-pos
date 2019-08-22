@@ -9,10 +9,11 @@ const MediaQueryContextProvider = props => {
   const isBigScreen = useMediaQuery({ minDeviceWidth: 1824 });
   const isTabletOrMobileDevice = useMediaQuery({ maxDeviceWidth: 1224 });
   const isMobileDevicePortrait = useMediaQuery({ maxDeviceWidth: 420 });
+  const isMobileDeviceLanscape = useMediaQuery({ maxDeviceHeight: 420 });
   const isPortrait = useMediaQuery({ orientation: 'portrait' });
   const isRetina = useMediaQuery({ minResolution: '2dppx' });
   
-  const mediaQuaryState = { isBigScreen, isMobileDevicePortrait, isTabletOrMobileDevice, isPortrait, isRetina, isDesktopOrLaptop };
+  const mediaQuaryState = { isBigScreen, isMobileDevicePortrait, isTabletOrMobileDevice, isPortrait, isRetina, isDesktopOrLaptop, isMobileDeviceLanscape };
 
     return (
       <MediaQueryContext.Provider

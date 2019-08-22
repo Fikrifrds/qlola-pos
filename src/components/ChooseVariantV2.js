@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -8,6 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import { MediaQueryContext } from '../context/MediaQueryContextProvider';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,6 +23,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ChooseVariant2({ variant, setVariant, options, setVariantPrice, title }) {
+  const mediaContext = useContext(MediaQueryContext);
+  const {isDesktopOrLaptop, isBigScreen, isMobileDevicePortrait, isTabletOrMobileDevice, isPortrait, isRetina } = mediaContext.media;
+
   const classes = useStyles();
 
   const change = value => {
@@ -33,7 +37,7 @@ export default function ChooseVariant2({ variant, setVariant, options, setVarian
     <div className={classes.root}>
       <FormControl component="fieldset" className={classes.formControl}>
         <div className="legend"><strong>{title.toUpperCase()}</strong> | <span>PILIH SALAH SATU</span></div>
-        <div className='button-group'>
+        <div className='button-group' style={{ justifyContent: isMobileDevicePortrait && 'center' }}>
         { Object.keys(options).map( (key, index) => (
         <div name="variant" value={variant} 
           onClick={ () => change(key)} key={index} className={`custom-button ${ key === variant ? 'contained' : 'outlined'}`}>

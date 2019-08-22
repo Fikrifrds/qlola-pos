@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -8,6 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import TextField from '@material-ui/core/TextField';
 import generateCash from '../formula/change';
+import { MediaQueryContext } from '../context/MediaQueryContextProvider';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,6 +23,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ChooseCashAmount({ cash, setCash, cashInput, setCashInput, price }) {
+  const mediaContext = useContext(MediaQueryContext);
+  const {isDesktopOrLaptop, isBigScreen, isMobileDevicePortrait, isTabletOrMobileDevice, isPortrait, isRetina } = mediaContext.media;
+
   const classes = useStyles();
   const [ind, setInd] = useState(null);
  
@@ -41,7 +45,7 @@ export default function ChooseCashAmount({ cash, setCash, cashInput, setCashInpu
     <div className={classes.root}>
       <FormControl component="fieldset" className={classes.formControl}>
       <div className="legend"><strong>CASH</strong></div>
-        <div className='button-group'>
+        <div className='button-group' style={{ justifyContent: isMobileDevicePortrait && 'center' }}>
         { options.map( (option, index) => (
             <div 
             key={index} 

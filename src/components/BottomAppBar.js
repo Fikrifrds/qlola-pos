@@ -25,6 +25,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { ShopContext } from '../context/ShopContextProvider';
 import Badge from '@material-ui/core/Badge';
 import { MediaQueryContext } from '../context/MediaQueryContextProvider';
+import { Button } from '@material-ui/core';
 
 // const Bottom = () => {
 //     const context = useContext(ShopContext);
@@ -85,7 +86,7 @@ const StyledBadge = withStyles(theme => ({
 
 export default function BottomAppBar() {
   const mediaContext = useContext(MediaQueryContext);
-  const {isDesktopOrLaptop, isBigScreen, isMobileDevicePortrait, isTabletOrMobileDevice, isPortrait, isRetina } = mediaContext.media;
+  const {isDesktopOrLaptop, isBigScreen, isMobileDevicePortrait, isMobileDeviceLanscape, isTabletOrMobileDevice, isPortrait, isRetina } = mediaContext.media;
   const pages = ['/', '/cart']
   const classes = useStyles();
   const context = useContext(ShopContext);
@@ -126,10 +127,17 @@ export default function BottomAppBar() {
             Rp {context.cart.items.reduce((a,b) => a + b.price*b.quantity,0).toLocaleString('id')}
           </Typography>
             </div> */}
+<div style={{ minWidth:"20%"}}>
+<Button onClick={ price ? openCheckOut : () => {}} fullWidth  variant="contained" style={{ cursor: `${price ? 'pointer' : 'not-allowed'}`}}>
+  <span style={{ fontSize: isDesktopOrLaptop && '20px'}}>Pay Rp {price.toLocaleString('id')}</span>
+</Button>
+</div>
 
-          <div onClick={ price ? openCheckOut : () => {}} className={`bottom-app ${ price ? 'bottom-app-active': ''}`}>
-              <div style={{ cursor: `${price ? 'pointer' : 'not-allowed'}`}} className="charge-app-button">Pay Rp {price.toLocaleString('id')}</div>
-            </div>
+          {/* <div onClick={ price ? openCheckOut : () => {}} className={`bottom-app ${ price ? 'bottom-app-active': ''}`}>
+              <div 
+              style={{ cursor: `${price ? 'pointer' : 'not-allowed'}`}} 
+              className="charge-app-button">Pay Rp {price.toLocaleString('id')}</div>
+            </div> */}
         <CheckOut open={open} setOpen={setOpen} price={price} isMobileDevicePortrait={isMobileDevicePortrait} />
 
             
