@@ -21,7 +21,7 @@ export default function ItemCart( { cartItem, handleClickOpen }){
   const context = useContext(ShopContext);
   const mediaContext = useContext(MediaQueryContext);
   const media = mediaContext.media;
-  const classes = useStyles();
+  const classes = useStyles()
 console.log('itemcart', context)
     return (
     <div onClick={() => handleClickOpen(cartItem)} className="pointer" 
