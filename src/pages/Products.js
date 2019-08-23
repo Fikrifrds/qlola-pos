@@ -23,7 +23,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import uuid from 'uuid';
 import { MediaQueryContext } from '../context/MediaQueryContextProvider';
-
+import ReactTable from 'react-table';
+import 'react-table/react-table.css'
 const useStyles = makeStyles(theme => ({
   icon: {
     marginRight: theme.spacing(2),
@@ -70,43 +71,41 @@ const ProductsPage = props => {
   const shopContext = useContext(ShopContext);
   console.log('productContext', context)
 
-  const [open, setOpen] = useState(false);
-  const [clickedItem, setClickedItem] = useState({});
-  const [isGrid, setIsGrid] = useState(JSON.parse(localStorage.getItem('isGrid')));
-  const [ products, setProducts ] = useState(context.products);
-  const [searchField, setSearchField] = useState('');
-
-  const changeView = (value) => {
-    setIsGrid(JSON.parse(value));
-    localStorage.setItem('isGrid', value);
-  }
-
-  const handleClickOpen = card => {
-    setClickedItem(card);
-    setOpen(true);
-    globalContext.showAlert('asda','info')
-  };
-
-
-  useEffect(() => {
-      setProducts(context.products);    
-  }, [context.selectCategory])
-
   const classes = useStyles();
 
-    const handleSubmit = product => {
-      const input = {
-        _id: uuid.v4(),
-        product: product,
-        quantity: 1,
-        price: product.price,
-        variantPrice : product.price,
-        extra: 0,
-        variant: null,
-        modifier : []
-      }
-      shopContext.addProductToCart(input);
+  const data = [
+      {
+    name: 'Tanner Linsley',
+    age: 26,
+    friend: {
+      name: 'Jason Maurer',
+      age: 23,
     }
+  },
+  {
+    name: 'Tanner Linsley',
+    age: 26,
+    friend: {
+      name: 'Jason Maurer',
+      age: 23,
+    }
+  }]
+ 
+  const columns = [{
+    Header: 'Name',
+    accessor: 'name' // String-based value accessors!
+  }, {
+    Header: 'Age',
+    accessor: 'age',
+    Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
+  }, {
+    id: 'friendName', // Required because our accessor is not a string
+    Header: 'Friend Name',
+    accessor: d => d.friend.name // Custom value accessors!
+  }, {
+    Header: props => <span>Friend Age</span>, // Custom header components!
+    accessor: 'friend.age'
+  }]
 
     return (
           <React.Fragment>
@@ -114,53 +113,7 @@ const ProductsPage = props => {
           <main>
         <Container className={classes.cardGrid} maxWidth="lg">
           <Grid container spacing={2}>
-          <Grid item xs={ !isPortrait ? 7 : 12 }>
-            <div style={{ display:'flex', justifyContent: 'space-between', paddingBottom: '15px'}}>
-              <div>
-                {/* <SearchBox width="200px"/> */}
-                <GridOn style={{color: `${isGrid ? 'lightgray' : ''}`, cursor: 'pointer'}} onClick={() => changeView(false)}/>
-                <FormatListBulleted style={{color: `${isGrid ? '' : 'lightgray'}`, cursor: 'pointer'}} onClick={() => changeView(true)} />
-                
-              </div>
-              <div>
-              <SearchBoxV2 searchField={searchField} setSearchField={setSearchField} />
-              {/* <Button onClick={handleClickOpenSelectCategory}>Semua</Button> */}
-              <span style={{ marginLeft: '7px'}}>
-                <SelectCategory />
-              </span>
-              
-              </div>
-              
-            </div>
-          { products.length ? 
-            <Grid container spacing={2}>
-            
-              { products.filter( product => product.name.toLowerCase().includes(searchField.toLowerCase())).map(product => (
-                      isGrid ?
-                      <ItemCardList
-                        key={product._id}
-                        onclick= { product.hasVariant || product.hasModifier ? () => handleClickOpen(product) : () => handleSubmit(product) }
-                        product={product}
-                      />
-                      :
-                      <ItemCard 
-                        key={product._id}
-                        onclick= { product.hasVariant || product.hasModifier ? () => handleClickOpen(product) : () => handleSubmit(product) }
-                        product={product} 
-                      />
-                  ))}
-            </Grid>
-            :
-            <div style={{ textAlign: 'center'}}>No product</div>
-          }
-          <NewItem product={clickedItem} open={open} setOpen={setOpen} />
-        </Grid>
-        { !isPortrait ? 
-          <Grid item xs={5} >
-              <CartPage />
-        </Grid> :''
-        }
-        
+
         </Grid>
         
         </Container>

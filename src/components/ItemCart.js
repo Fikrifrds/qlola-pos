@@ -44,7 +44,7 @@ console.log('itemcart', context)
               <i>{ cartItem.note } </i>
             </div>
         </div>
-        <div style={{color: 'gray'}}><strong>x{cartItem.quantity}</strong></div>
+        <div style={{color: 'gray'}}><Chip size="small" label={cartItem.quantity + 'x'} /></div>
         <div><strong>{ (cartItem.price*cartItem.quantity).toLocaleString('id')}</strong></div>            
     </div>
     )

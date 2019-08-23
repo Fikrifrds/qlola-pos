@@ -12,6 +12,8 @@ import DesktopMac from '@material-ui/icons/DesktopMac';
 import Cached from '@material-ui/icons/Cached';
 import Settings from '@material-ui/icons/Settings';
 import TrendingUp from '@material-ui/icons/TrendingUp';
+import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
+import SwapHorizontalCircle from '@material-ui/icons/SwapHorizontalCircle';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
@@ -104,6 +106,18 @@ export default function Menu() {
           <ListItem button>
             <ListItemIcon><TrendingUp /></ListItemIcon>
             <ListItemText primary={'Transactions'} />
+          </ListItem>
+    </Link>
+    <Link to="/products">
+          <ListItem button>
+            <ListItemIcon><ShoppingBasket /></ListItemIcon>
+            <ListItemText primary={'Products'} />
+          </ListItem>
+    </Link>
+    <Link to="/operators">
+          <ListItem button>
+            <ListItemIcon><AccountCircle /></ListItemIcon>
+            <ListItemText primary={'Operators'} />
           </ListItem>
     </Link>
     <Link to="/settings">

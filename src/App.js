@@ -5,7 +5,8 @@ import ShopState from './context/ShopContextProvider';
 import GlobalState from './context/GlobalContextProvider';
 import ProductState from './context/ProductContextProvider';
 import MainNavigation from './components/MainNavigation'
-import ProductsPage from './pages/Products';
+import PointOfSale from './pages/PointOfSale';
+import Products from './pages/Products';
 import CartPage from './pages/Cart';
 import Transactions from './pages/Transactions';
 import Settings from './pages/Settings';
@@ -26,10 +27,11 @@ const App = props => {
         {/* <MainNavigation /> */}
           <Switch>
             
-            <Route path="/" component={ProductsPage} exact />
+            <Route path="/" component={PointOfSale} exact />
             <Route path="/example" component={Example} exact />
             <Route path="/cart" component={CartPage} exact />
             <Route path="/transactions" component={Transactions} exact />
+            <Route path="/products" component={Products} exact />
             <Route path="/settings" component={Settings} exact />
             
           </Switch>

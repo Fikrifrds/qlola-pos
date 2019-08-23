@@ -97,7 +97,7 @@ export default function NewItem({ open, setOpen, product }) {
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
-      <DialogActions style={{ display: 'flex', justifyContent:'space-between', flexWrap: 'wrap', margin: '10px 20px 10px 20px', fontSize: media.isMobileDevicePortrait ? '15px' : '18px' }}>
+      <DialogActions style={{ display: 'flex', justifyContent:'space-between', flexWrap: 'wrap', margin: '0px 30px 0px 30px' }}>
         { media.isMobileDevicePortrait ?
           <IconButton onClick={handleClose} variant="outlined" color="primary">
             <Close />
@@ -106,28 +106,20 @@ export default function NewItem({ open, setOpen, product }) {
             Cancel
           </Button>
         }
-          <div id="scroll-dialog-title">
-          <strong>
-          { media.isMobileDevicePortrait ? shorten(product.name, 10) : shorten(product.name, 17) }
-          </strong>
-          </div>
-          <div id="scroll-dialog-title">
+          <DialogTitle id="scroll-dialog-title">
           <strong>
           Rp { ( (variantPrice + extra)*quantity ).toLocaleString('id') }
           </strong>
-        </div>
+        </DialogTitle>
           <Button onClick={handleSubmit} variant="contained" color="primary">
             Add
           </Button>
         </DialogActions>
         <Divider />
         <DialogContent dividers={scroll === 'paper'}>
-          {/* <DialogContentText id="alert-dialog-slide-description">
-            {product.description}
-          </DialogContentText>
           <DialogContentText id="alert-dialog-slide-description">
-            Price : { Number(product.price).toLocaleString('id') }
-          </DialogContentText> */}
+            <center>{product.name}</center>
+          </DialogContentText>
           { product.hasVariant ?
           <>
             <ChooseVariantV2

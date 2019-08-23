@@ -100,7 +100,7 @@ const EditItem = ({ open, setOpen, currentItem }) => {
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
-      <DialogActions style={{ display: 'flex', justifyContent:'space-between', flexWrap: 'wrap', margin: '0 30px 0 30px'}}>
+      <DialogActions style={{ display: 'flex', justifyContent:'space-between', flexWrap: 'wrap', margin: '0px 30px 0px 30px'}}>
       { media.isMobileDevicePortrait ?
           <IconButton onClick={handleClose} variant="outlined" color="primary">
             <Close />
@@ -109,11 +109,6 @@ const EditItem = ({ open, setOpen, currentItem }) => {
             Cancel
           </Button>
         }
-          <DialogTitle id="scroll-dialog-title">
-          <strong>
-            { media.isMobileDevicePortrait ? shorten(currentItem.product.name, 10) : shorten(currentItem.product.name, 17) }
-          </strong>
-          </DialogTitle>
           <DialogTitle id="scroll-dialog-title">
           <strong>
           Rp { ( (variantPrice + extra)*quantity ).toLocaleString('id') }
@@ -125,6 +120,10 @@ const EditItem = ({ open, setOpen, currentItem }) => {
       </DialogActions>
       <Divider />
       <DialogContent dividers={scroll === 'paper'}>
+          <DialogContentText id="alert-dialog-slide-description">
+            <center>{currentItem.product.name}</center>
+          </DialogContentText>
+
           { currentItem.product.hasVariant ?
           <>
           <ChooseVariantV2
