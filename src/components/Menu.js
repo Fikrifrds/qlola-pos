@@ -131,7 +131,7 @@ export default function Menu() {
       
           <ListItem button>
             <ListItemIcon><ExitToApp /></ListItemIcon>
-            <ListItemText primary={'Log Out'} />
+            <ListItemText primary={'Keluar'} />
           </ListItem>
           </div> 
           </List>
