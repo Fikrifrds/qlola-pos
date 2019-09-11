@@ -187,7 +187,7 @@ export const CREATE_SPLITTED_SALE = 'CREATE_SPLITTED_SALE';
     return { ...state, cart: bill  };
   };
 
-  const createSale = state => {
+  const createSale = (data, state) => {
     const updatedBills = [...state.bills];
     const updatedBillIndex = updatedBills.findIndex(
       item => item._id === state.cart._id
@@ -202,7 +202,8 @@ export const CREATE_SPLITTED_SALE = 'CREATE_SPLITTED_SALE';
       try {
         const item = await fetch('https://jsonplaceholder.typicode.com/todos/1');
         const result = await item.json();
-        console.log(result)
+        console.log(result);
+        console.log('data', data)
       } catch(err) {
         let sales = JSON.parse(localStorage.getItem('sales')) || [];
         sales.push(state.cart)
@@ -279,7 +280,7 @@ export const shopReducer = (state, action) => {
         case BILL_TO_CART:
           return billToCart(action.bill, state);
         case CREATE_SALE:
-          return createSale(state);
+          return createSale(action.data, state);
         case CREATE_SPLITTED_SALE:
           return createSplittedSale(action._ids, state);
         default:

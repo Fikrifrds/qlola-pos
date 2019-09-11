@@ -127,11 +127,13 @@ export default function BottomAppBar() {
             Rp {context.cart.items.reduce((a,b) => a + b.price*b.quantity,0).toLocaleString('id')}
           </Typography>
             </div> */}
+            { ['/', '/cart'].includes(window.location.pathname) &&
 <div style={{ minWidth:"20%"}}>
 <Button onClick={ price ? openCheckOut : () => {}} fullWidth  variant="contained" style={{ cursor: `${price ? 'pointer' : 'not-allowed'}`}}>
   <span style={{ fontSize: isDesktopOrLaptop && '20px'}}>Pay Rp {price.toLocaleString('id')}</span>
 </Button>
 </div>
+            }
 
           {/* <div onClick={ price ? openCheckOut : () => {}} className={`bottom-app ${ price ? 'bottom-app-active': ''}`}>
               <div 

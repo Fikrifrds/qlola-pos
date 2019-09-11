@@ -28,7 +28,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function SearchBox({ searchField, setSearchField}) {
+export default function SearchBox({ searchField, setSearchField, placeholder}) {
   const classes = useStyles();
   // const context = useContext(ProductContext);
 
@@ -43,7 +43,7 @@ export default function SearchBox({ searchField, setSearchField}) {
         id="standard-search"
         type="search"
         className={classes.textField}
-        placeholder="Cari Item..."
+        placeholder={placeholder}
         value={searchField}
         onChange={handleChange}
     />

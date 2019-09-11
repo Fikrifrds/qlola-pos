@@ -72,13 +72,13 @@ const PointOfSale = props => {
 
   const [open, setOpen] = useState(false);
   const [clickedItem, setClickedItem] = useState({});
-  const [isGrid, setIsGrid] = useState(JSON.parse(localStorage.getItem('isGrid')));
+  const [isListViewed, setIsListViewed] = useState(JSON.parse(localStorage.getItem('isListViewed')));
   const [ products, setProducts ] = useState(context.products);
   const [searchField, setSearchField] = useState('');
 
   const changeView = (value) => {
-    setIsGrid(JSON.parse(value));
-    localStorage.setItem('isGrid', value);
+    setIsListViewed(JSON.parse(value));
+    localStorage.setItem('isListViewed', value);
   }
 
   const handleClickOpen = card => {
@@ -118,12 +118,23 @@ const PointOfSale = props => {
             <div style={{ display:'flex', justifyContent: 'space-between', paddingBottom: '15px'}}>
               <div>
                 {/* <SearchBox width="200px"/> */}
-                <GridOn style={{color: `${isGrid ? 'lightgray' : ''}`, cursor: 'pointer'}} onClick={() => changeView(false)}/>
-                <FormatListBulleted style={{color: `${isGrid ? '' : 'lightgray'}`, cursor: 'pointer'}} onClick={() => changeView(true)} />
+
+                {/* <GridOn style={{color: `${isListViewed ? 'lightgray' : ''}`, cursor: 'pointer'}} onClick={() => changeView(false)}/>
+                <FormatListBulleted style={{color: `${isListViewed ? '' : 'lightgray'}`, cursor: 'pointer'}} onClick={() => changeView(true)} /> */}
+
+                { isListViewed ? 
+                  <GridOn style={{cursor: 'pointer'}} onClick={() => changeView(false)}/>
+
+                    :
+                  <FormatListBulleted style={{cursor: 'pointer'}} onClick={() => changeView(true)} />
+
+                }
+                
+                
                 
               </div>
               <div>
-              <SearchBoxV2 searchField={searchField} setSearchField={setSearchField} />
+              <SearchBoxV2 searchField={searchField} setSearchField={setSearchField} placeholder="Cari Item..." />
               {/* <Button onClick={handleClickOpenSelectCategory}>Semua</Button> */}
               <span style={{ marginLeft: '7px'}}>
                 <SelectCategory />
@@ -136,7 +147,7 @@ const PointOfSale = props => {
             <Grid container spacing={2}>
             
               { products.filter( product => product.name.toLowerCase().includes(searchField.toLowerCase())).map(product => (
-                      isGrid ?
+                      isListViewed ?
                       <ItemCardList
                         key={product._id}
                         onclick= { product.hasVariant || product.hasModifier ? () => handleClickOpen(product) : () => handleSubmit(product) }

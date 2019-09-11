@@ -48,8 +48,8 @@ const ShopContextProvider = props => {
     dispatch({ type: BILL_TO_CART, bill:bill });
   };
 
-  const createSale = () => {
-    dispatch({ type: CREATE_SALE });
+  const createSale = data => {
+    dispatch({ type: CREATE_SALE, data:data });
   };
 
   const createSplittedSale = _ids => {

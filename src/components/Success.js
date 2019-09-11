@@ -16,6 +16,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import { ShopContext } from '../context/ShopContextProvider'
 import { ButtonGroup } from '@material-ui/core';
+import { MediaQueryContext } from '../context/MediaQueryContextProvider';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -61,12 +62,16 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function Success({ openSuccess, setOpenSuccess, change, price, clearFields}) {
+  const mediaContext = useContext(MediaQueryContext);
+  const {isDesktopOrLaptop, isBigScreen, isMobileDevicePortrait, isTabletOrMobileDevice, isPortrait, isRetina } = mediaContext.media;
+
   const classes = useStyles();
     const [email, setEmail] = useState('');
 
   function handleClose() {
     setOpenSuccess(false);
     clearFields();
+    setEmail('');
   }
 
   function handleChange(e){
@@ -86,7 +91,7 @@ export default function Success({ openSuccess, setOpenSuccess, change, price, cl
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              Transaction Succeded!
+              Transaksi Berhasil!
             </Typography>
             <Button color="inherit" onClick={newItem}>
               New Sale
@@ -94,13 +99,28 @@ export default function Success({ openSuccess, setOpenSuccess, change, price, cl
           </Toolbar>
         </AppBar>
         <DialogContent>
-            <div style={{ padding: '20vh 0 5vh 0'}}>
-            <Typography variant="h2" className={classes.change}>
-              Change Rp {Number(localStorage.getItem('change')).toLocaleString('id')}
-        </Typography>
-        <Typography variant="h6" className={classes.text}>
-              Out of Rp {Number(localStorage.getItem('price')).toLocaleString('id')}
-        </Typography>
+            <div style={{ padding: '10vh 0 5vh 0'}}>
+              { Number(localStorage.getItem('change')) >= 0 ?
+              <>
+                <Typography variant={isMobileDevicePortrait ? 'h4' : 'h3'} className={classes.change}>
+                  Kembali Rp {Number(localStorage.getItem('change')).toLocaleString('id')}
+                </Typography>
+                <Typography variant="h6" className={classes.text}>
+                  Dari total Rp {Number(localStorage.getItem('price')).toLocaleString('id')}
+                </Typography>
+              </>
+              :
+              <>
+              <Typography variant="h6" className={classes.text}>
+                Pembayaran melalui Mesin EDC
+              </Typography>
+              <Typography variant="h2" className={classes.change}>
+              {localStorage.getItem('edcBank')}                
+              </Typography>
+              
+              </>
+               }
+            
             </div>
         
         <Divider />
@@ -110,20 +130,28 @@ export default function Success({ openSuccess, setOpenSuccess, change, price, cl
               Bagaimana pelanggan menerima struk?
           </Typography>
           </div>
-          <div>
+          <div class="receipt-send">
           <TextField
-            className={classes.textField}
+            className="flex-item"
             label="Email"
             value={email}
             onChange={handleChange}
           />
-          </div>
-          <div className="button-primary-contained">
+
+          { email &&
+            <Button variant="contained" color="inherit" className="flex-item">
+              Send Email
+            </Button>
+          }
+          
+          <Button variant="contained" color="primary" className="flex-item">
             Print Struk
-          </div>
-          <div className="button-secondary-contained">
+          </Button>
+          <Button variant="contained" className="flex-item">
             Tidak Perlu
+          </Button>
           </div>
+          
       </div>
         </DialogContent>
         

@@ -19,8 +19,7 @@ const useStyles = makeStyles({
   title : {
     textAlign: 'center',
     padding: '5px',
-    fontSize: '12px',
-    fontWeight: 'bold'
+    fontSize: '11px'
   }
 });
 
@@ -30,7 +29,7 @@ export default function ItemCard( { product, onclick }) {
   const classes = useStyles();
 
   return (
-    <Grid item key={product._id} xs={6} sm={4} md={3} onClick={onclick} className="pointer">
+    <Grid item key={product._id} xs={6} sm={5} md={3} onClick={onclick} className="pointer">
       <Card className={classes.card}>
       <CardMedia
         className={classes.media}
@@ -39,7 +38,8 @@ export default function ItemCard( { product, onclick }) {
       />
 
         <Typography className={classes.title} gutterBottom>
-          { media.isMobileDeviceLanscape ? shorten(product.name, 10) : shorten(product.name, 17)}
+          {/* { media.isMobileDeviceLanscape ? shorten(product.name, 10) : shorten(product.name, 17)} */}
+          {product.name}
         </Typography>
 
       </Card>

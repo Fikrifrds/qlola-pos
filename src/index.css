@@ -37,14 +37,6 @@ button:hover,
   border: solid 1px red
 } */
 
-.success-sale {
-  display: 'flex';
-  flex-direction:'column';
-  justify-content:'center';
-  align-items: center;
-}
-
-
 .button-primary-contained {
   border-radius: 5px;
   background-color: #2a3eb1;
@@ -71,4 +63,17 @@ button:hover,
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.receipt-send {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.receipt-send .flex-item {
+  margin-top: 10px;
+  height: 60px;
 }

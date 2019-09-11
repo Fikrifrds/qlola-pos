@@ -109,7 +109,7 @@ export default function SplitBill({ openSplitBill, setOpenSplitBill, media }) {
             borderRadius: '5px'
           }}>
             <div>
-              Total pembayaran yang dipisah
+              Total harga dipisah
             </div>
             <div>
               Rp {splittedAmount.toLocaleString('id')}
