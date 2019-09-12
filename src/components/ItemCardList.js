@@ -28,7 +28,7 @@ export default function ItemCardList({ product, onclick }) {
         <ListItemAvatar>
           <img width="50px" alt={product.name} src={product.imgUrl} />
         </ListItemAvatar>
-        <ListItemText style={{ paddingTop: '9px', paddingLeft: '5px'}} primary={product.name} />
+        <ListItemText style={{ padding: '10px 5px 5px 5px' }}><small>{product.name}</small></ListItemText>
         <ListItemSecondaryAction>
           { product.hasVariant ? Object.keys(product.variant).length + ' harga' : 'Rp ' +  product.price.toLocaleString('id')}
         </ListItemSecondaryAction>

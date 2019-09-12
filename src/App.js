@@ -14,10 +14,14 @@ import Example from './pages/Example';
 import BottomAppBar from './components/BottomAppBar'
 import './App.css';
 import Snackbars from './components/Snackbars';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import NewProduct from './pages/NewProduct';
 
 const App = props => {
 
     return (
+      <React.Fragment>
+      <CssBaseline />
       <GlobalState>
       <ShopState>
        
@@ -33,6 +37,7 @@ const App = props => {
             <Route path="/transactions" component={Transactions} exact />
             <Route path="/products" component={Products} exact />
             <Route path="/settings" component={Settings} exact />
+            <Route path="/products/new" component={NewProduct} exact />
             
           </Switch>
           <BottomAppBar />
@@ -42,7 +47,7 @@ const App = props => {
         </ProductState>
       </ShopState>
       </GlobalState>
-
+      </React.Fragment>
     );
 }
 

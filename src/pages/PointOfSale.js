@@ -109,8 +109,6 @@ const PointOfSale = props => {
     }
 
     return (
-          <React.Fragment>
-          <CssBaseline />
           <main>
         <Container className={classes.cardGrid} maxWidth="lg">
           <Grid container spacing={2}>
@@ -176,7 +174,6 @@ const PointOfSale = props => {
         
         </Container>
         </main>
-          </React.Fragment>
       )        
   }
 

@@ -11,7 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import { ProductContext } from '../context/ProductContextProvider';
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     padding: '1px 4px',
     display: 'flex',
@@ -25,8 +25,13 @@ const useStyles = makeStyles({
   },
   iconButton: {
     padding: 10,
-  }
-});
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 150,
+  },
+}));
 
 export default function SearchBox({ searchField, setSearchField, placeholder}) {
   const classes = useStyles();

@@ -45,7 +45,6 @@ const CartPage = props => {
   };
 
     return (
-      <React.Fragment>
       <Paper className={classes.paper} style={{ marginBottom: '175px'}}>
       <TopCart billLength={context.bills.length} media={media} />
         <main className="cart">
@@ -64,7 +63,6 @@ const CartPage = props => {
         <BottomCart media={media} />
         </div>
         </Paper>
-      </React.Fragment>
     );
   }
 

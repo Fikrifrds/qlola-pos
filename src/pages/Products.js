@@ -134,8 +134,6 @@ const ProductsPage = props => {
   const classes = useStyles();
 
     return (
-          <React.Fragment>
-          <CssBaseline />
           <main>
         <Container className={classes.cardGrid} maxWidth="lg">
                  
@@ -143,7 +141,6 @@ const ProductsPage = props => {
           <ProductTable searchField={searchField}/>
         </Container>
         </main>
-          </React.Fragment>
       )        
   }
 

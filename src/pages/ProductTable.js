@@ -21,11 +21,14 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Input from '@material-ui/core/Input';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
+import Fab from '@material-ui/core/Fab';
 import DeleteIcon from '@material-ui/icons/Delete';
+import AddIcon from '@material-ui/icons/Add';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { ProductContext } from '../context/ProductContextProvider';
 import SearchBoxV2 from '../components/SearchBoxV2';
+import NewProduct from './NewProduct';
+import { Link } from 'react-router-dom';
 
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -139,6 +142,11 @@ const useToolbarStyles = makeStyles(theme => ({
   button: {
     marginLeft: theme.spacing(2),
   },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 150,
+  },
 }));
 
 const EnhancedTableToolbar = props => {
@@ -159,11 +167,13 @@ const EnhancedTableToolbar = props => {
         ) : (
           <div style={{ display: 'flex' }}>
             <Typography variant="h6" id="tableTitle">
-              Daftar Produk
+              Produk
             </Typography>
-            <Button size="small" variant="contained" color="primary" className={classes.button}>
-              Tambah
-            </Button>
+            <Link to="/products/new">
+            <Fab size="small" color="primary" className={classes.button}>
+              <AddIcon />
+            </Fab>
+            </Link>
           </div>
           
         )}
@@ -286,6 +296,10 @@ export default function ProductTable() {
     setSelected(newSelected);
   }
 
+  function handleClickRow(row){
+    alert(row.name + row._id)
+  }
+
   function handleChangePage(event, newPage) {
     setPage(newPage);
   }
@@ -336,7 +350,7 @@ export default function ProductTable() {
                   return (
                     <TableRow style={{ cursor: 'pointer'}}
                       hover
-                      onClick={event => alert('asd')}
+                      onClick={() => handleClickRow(row)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
@@ -357,7 +371,7 @@ export default function ProductTable() {
                       <TableCell component="th" id={labelId} scope="row" padding="none">
                         {row.name}
                       </TableCell>
-                      <TableCell align="right">{row.price}</TableCell>
+                      <TableCell align="right">{row.hasVariant ?  Object.keys(row.variant).length + ' harga' : row.price }</TableCell>
                       <TableCell align="left">{row.category}</TableCell>
                     </TableRow>
                   );

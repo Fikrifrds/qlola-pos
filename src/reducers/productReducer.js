@@ -45,7 +45,42 @@ const products = [
   modifier: {
     'flower' : { label: 'Flower', price: 5000}, 
     'leaf': { label: 'Leaf', price: 3000}
-  }}
+  }},
+  { _id: '5sd', name: 'Chicken Basil Pesto Panini', price: 55000, imgUrl: imgUrl4, 
+  hasVariant: false, 
+  category: 'coffee',
+  description: 'Let Google help apps determine location.',
+  modifierTitle: 'Dekorasi',
+  hasModifier: false
+  },
+  { _id: '6sd', name: 'Smoked Beed & Mozarella Bitterballen', price: 38000, imgUrl: imgUrl4, 
+  hasVariant: false, 
+  category: 'coffee',
+  description: 'Let Google help apps determine location.',
+  modifierTitle: 'Dekorasi',
+  hasModifier: false
+},
+{ _id: '8sd', name: 'Smoked Beed & Mozarella Bitterballen', price: 38000, imgUrl: imgUrl4, 
+  hasVariant: false, 
+  category: 'coffee',
+  description: 'Let Google help apps determine location.',
+  modifierTitle: 'Dekorasi',
+  hasModifier: false
+},
+{ _id: '9sd', name: 'Smoked Beed & Mozarella Bitterballen', price: 38000, imgUrl: imgUrl4, 
+  hasVariant: false, 
+  category: 'coffee',
+  description: 'Let Google help apps determine location.',
+  modifierTitle: 'Dekorasi',
+  hasModifier: false
+},
+{ _id: '10sd', name: 'Smoked Beed & Mozarella Bitterballen', price: 38000, imgUrl: imgUrl4, 
+  hasVariant: false, 
+  category: 'coffee',
+  description: 'Let Google help apps determine location.',
+  modifierTitle: 'Dekorasi',
+  hasModifier: false
+}
 ]
 
   // const searchProduct = (searchInput, state) => {
