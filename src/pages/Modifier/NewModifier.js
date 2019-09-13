@@ -1,15 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react';
 import MediaQuery from 'react-responsive';
-import { ProductContext } from '../context/ProductContextProvider';
-import { GlobalContext } from '../context/GlobalContextProvider';
-import { ShopContext } from '../context/ShopContextProvider';
-import './Products.css';
-import CartPage from './Cart';
-import SelectCategory from '../components/SelectCategory';
-import ItemCard from '../components/ItemCard';
-import ItemCardList from '../components/ItemCardList';
-import NewItem from '../components/NewItem';
-import SearchBoxV2 from '../components/SearchBoxV2';
+import { ProductContext } from '../../context/ProductContextProvider';
+import { GlobalContext } from '../../context/GlobalContextProvider';
+import { ShopContext } from '../../context/ShopContextProvider';
+import CartPage from '../Cart';
+import SelectCategory from '../../components/SelectCategory';
+import ItemCard from '../../components/ItemCard';
+import ItemCardList from '../../components/ItemCardList';
+import NewItem from '../../components/NewItem';
+import SearchBoxV2 from '../../components/SearchBoxV2';
 import IconButton from '@material-ui/core/IconButton';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Button from '@material-ui/core/Button';
@@ -23,11 +22,11 @@ import Switch from '@material-ui/core/Switch';
 import { makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import uuid from 'uuid';
-import { MediaQueryContext } from '../context/MediaQueryContextProvider';
+import { MediaQueryContext } from '../../context/MediaQueryContextProvider';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import { Link } from 'react-router-dom';
-import InputVariant from '../components/InputVariant';
+import InputModifier from './InputModifier';
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -95,90 +94,52 @@ const ProductsPage = props => {
 
   const classes = useStyles();
 
-  const [ imgUrl, setImgUrl ] = useState('');
-  const [hasVariant, setHasVariant] = useState(false);
+  const [modifierTitle, setModifierTitle] = useState('');
+  const [modifierData, setModifierData] = useState({});
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState('');
 
-  const handleSwitch = e => {
-      setHasVariant(!hasVariant);
+  function handleChange(e){
+    const action = {
+      'name': setName,
+      'price' : setPrice,
+      'modifier-title': setModifierTitle
+    };
+
+    action[e.target.name](e.target.value);
   }
 
-  function handleImageUpload(e){
-    console.log(e.target.files)
+  function handleSubmit(){
+    console.log(name, price, modifierTitle, modifierData)
   }
 
     return (
           <main>
         <Container className={classes.cardGrid} maxWidth="lg">
             <div style={{ display: 'flex', justifyContent: 'space-between'}}>
-                <Link to="/products">
+                <Link to="/modifiers">
                 <IconButton size="medium">
                     <ArrowBack />
                 </IconButton>
                 
                 </Link>
-                <Button size="small" variant="contained" color="primary">Save</Button>
+                <Button size="small" variant="contained" color="primary" onClick={handleSubmit}>Save</Button>
             </div>
             
           <Grid container spacing={2} className={classes.grid}>
           <div component="fieldset" className={classes.formControl}>
               
-          <div style={{ display: 'flex', flexDirection:'column', justifyContent: 'space-between'}}>
-              <div className={classes.flexItem}>
-                <div className="legend"><strong>NAMA BARANG</strong></div>
-                <TextField
-                id="outlined-multiline-static"
-                
-                margin="normal"
-                variant="outlined"
-                type="text"
-                />
-              </div>
-            
+          <div style={{ display: 'flex', flexDirection:'column', justifyContent: 'space-between'}}>            
               
-              <div className={classes.flexItem}>
-                <FormControlLabel
-                control={<Switch color="primary" checked={hasVariant} onChange={handleSwitch} value={hasVariant} />}
-                label="Variasi Harga"
-                />
-            </div>
-
             
-            { hasVariant ? 
-                <div className={classes.flexItem}>
-            <InputVariant />
-            </div>
-            :
-            <div className={classes.flexItem}>
-                <div className="legend"><strong>HARGA</strong></div>
-                <TextField
-                id="outlined-multiline-static"
-                
-                className={classes.textField}
-                margin="normal"
-                variant="outlined"
-                type="number"
-                />
-                </div>
-                }
             
                 <div className={classes.flexItem}>
-                <div className="legend"><strong>UPLOAD FOTO</strong>
-                </div>
+            <InputModifier modifierTitle={modifierTitle} handleChange={handleChange} modifierData={modifierData} setModifierData={setModifierData} />
+            </div>
+           
+            
 
-                <input
-                    accept="image/*"
-                    className={classes.input}
-                    id="outlined-button-file"
-                    type="file"
-                    onChange={handleImageUpload}
-                />
-      <label htmlFor="outlined-button-file">
-          <img className={classes.upload} src={imgUrl ? imgUrl : "https://ruang-tekkim.herokuapp.com/images/no-image.png" } alt="upload" width="120px"/>
-        {/* <IconButton variant="contained" component="span" className={classes.button}>
-          <CloudUpload color="primary"/>
-        </IconButton> */}
-    </label>
-        </div>
+       
             </div>
                         
                     </div>

@@ -6,7 +6,8 @@ import GlobalState from './context/GlobalContextProvider';
 import ProductState from './context/ProductContextProvider';
 import MainNavigation from './components/MainNavigation'
 import PointOfSale from './pages/PointOfSale';
-import Products from './pages/Products';
+import Products from './pages/Product/Products';
+import Modifiers from './pages/Modifier/Modifiers';
 import CartPage from './pages/Cart';
 import Transactions from './pages/Transactions';
 import Settings from './pages/Settings';
@@ -15,7 +16,8 @@ import BottomAppBar from './components/BottomAppBar'
 import './App.css';
 import Snackbars from './components/Snackbars';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import NewProduct from './pages/NewProduct';
+import NewProduct from './pages/Product/NewProduct';
+import NewModifier from './pages/Modifier/NewModifier';
 
 const App = props => {
 
@@ -36,6 +38,8 @@ const App = props => {
             <Route path="/cart" component={CartPage} exact />
             <Route path="/transactions" component={Transactions} exact />
             <Route path="/products" component={Products} exact />
+            <Route path="/modifiers" component={Modifiers} exact />
+            <Route path="/modifiers/new" component={NewModifier} exact />
             <Route path="/settings" component={Settings} exact />
             <Route path="/products/new" component={NewProduct} exact />
             

@@ -49,6 +49,9 @@ export default function SelectCategory() {
     <MenuItem value="">
     <em>Semua</em>
     </MenuItem>
+    <MenuItem value="favorite">
+    <em>Favorite</em>
+    </MenuItem>
     { context.category.map( (category, index) => (
         <MenuItem  key={index} value={category._id}>{category.name}</MenuItem>
     ))}

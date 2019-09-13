@@ -25,8 +25,8 @@ import Fab from '@material-ui/core/Fab';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import { ProductContext } from '../context/ProductContextProvider';
-import SearchBoxV2 from '../components/SearchBoxV2';
+import { ProductContext } from '../../context/ProductContextProvider';
+import SearchBoxV2 from '../../components/SearchBoxV2';
 import NewProduct from './NewProduct';
 import { Link } from 'react-router-dom';
 
@@ -55,7 +55,7 @@ function getSorting(order, orderBy) {
 }
 
 const headCells = [
-  { id: 'imgurl', numeric: false, disablePadding: true, label: 'Thumbnail' },
+  { id: 'imgurl', numeric: false, disablePadding: true, label: '' },
   { id: 'name', numeric: false, disablePadding: true, label: 'Nama Produk' },
   { id: 'price', numeric: true, disablePadding: false, label: 'Harga' },
   { id: 'category', numeric: false, disablePadding: false, label: 'Category' },
@@ -80,6 +80,7 @@ function EnhancedTableHead(props) {
         </TableCell>
         {headCells
         .map(headCell => (
+          headCell.id !== 'imgurl' ?
           <TableCell
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
@@ -98,6 +99,15 @@ function EnhancedTableHead(props) {
                 </span>
               ) : null}
             </TableSortLabel>
+          </TableCell>
+          :
+          <TableCell
+            key={headCell.id}
+            align={headCell.numeric ? 'right' : 'left'}
+            padding={headCell.disablePadding ? 'none' : 'default'}
+            sortDirection={orderBy === headCell.id ? order : false}
+          >
+          {headCell.label}
           </TableCell>
         ))}
       </TableRow>
@@ -341,7 +351,9 @@ export default function ProductTable() {
               rowCount={rows.length}
             />
             <TableBody>
-              {stableSort(rows, getSorting(order, orderBy))
+
+              { rows.length ?
+              stableSort(rows, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   const isItemSelected = isSelected(row.name);
@@ -354,7 +366,7 @@ export default function ProductTable() {
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={row._id}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
@@ -375,12 +387,14 @@ export default function ProductTable() {
                       <TableCell align="left">{row.category}</TableCell>
                     </TableRow>
                   );
-                })}
-              {emptyRows > 0 && (
-                <TableRow style={{ height: 49 * emptyRows }}>
-                  <TableCell colSpan={6} />
+                })
+              :
+                <TableRow>
+                  <TableCell colSpan={headCells.length}>No Data</TableCell>
                 </TableRow>
-              )}
+              }
+                
+              
             </TableBody>
           </Table>
         </div>

@@ -9,7 +9,11 @@ const ProductContextProvider = props => {
   const imgUrl3 = 'https://ik.imagekit.io/qlola/tr:w-200/products/tea.jpg';
   const imgUrl4 = 'https://ik.imagekit.io/qlola/tr:w-200/products/cappuccino.jpg';
   const products = [
-    { _id: '1aa', name: 'Americano', price: 20000, imgUrl: imgUrl1,
+    { _id: '1aa', 
+    isFavourite: true,
+    name: 'Americano', 
+    price: 20000, 
+    imgUrl: imgUrl1,
     category: 'coffee',
     hasVariant: true,
     hasModifier: false,
@@ -24,6 +28,7 @@ const ProductContextProvider = props => {
     description: 'Let Google help apps determine location.' 
   },
     { _id: '2bb', name: 'Chicken Sandwich', price: 30000, imgUrl: imgUrl2, hasVariant: true, 
+    isFavourite: false,
     category: 'snack',
     variant: { 'www' : { label: 'Double', price: 25000}, 'aaa': { label: 'Triple', price: 40000} }, 
     variantDefault: 'www', description: 'Let Google help apps determine location.',
@@ -36,12 +41,14 @@ const ProductContextProvider = props => {
     }
     },
     { _id: '3cc', name: 'Green Tea', price: 25000, imgUrl: imgUrl3, 
+    isFavourite: true,
     hasVariant: false, 
     hasModifier: false,
     category: 'tea',
     variant: {}, variantDefault: '', description: 'Let Google help apps determine location.' },
     { _id: '4dd', name: 'Cappuccino Extra Coffee', price: 40000, imgUrl: imgUrl4, 
     hasVariant: false, 
+    isFavourite: false,
     category: 'coffee',
     description: 'Let Google help apps determine location.',
     modifierTitle: 'Dekorasi',
@@ -52,37 +59,42 @@ const ProductContextProvider = props => {
     }},
     { _id: '5sd', name: 'Chicken Basil Pesto Panini', price: 55000, imgUrl: imgUrl4, 
     hasVariant: false, 
+    isFavourite: true,
     category: 'coffee',
     description: 'Let Google help apps determine location.',
-    modifierTitle: '',
+    modifierTitle: 'Dekorasi',
     hasModifier: false
     },
     { _id: '6sd', name: 'Smoked Beed & Mozarella Bitterballen', price: 38000, imgUrl: imgUrl4, 
     hasVariant: false, 
+    isFavourite: true,
     category: 'coffee',
     description: 'Let Google help apps determine location.',
-    modifierTitle: '',
+    modifierTitle: 'Dekorasi',
     hasModifier: false
   },
   { _id: '8sd', name: 'Smoked Beed & Mozarella Bitterballen', price: 38000, imgUrl: imgUrl4, 
     hasVariant: false, 
+    isFavourite: false,
     category: 'coffee',
     description: 'Let Google help apps determine location.',
-    modifierTitle: '',
+    modifierTitle: 'Dekorasi',
     hasModifier: false
   },
   { _id: '9sd', name: 'Smoked Beed & Mozarella Bitterballen', price: 38000, imgUrl: imgUrl4, 
     hasVariant: false, 
+    isFavourite: false,
     category: 'coffee',
     description: 'Let Google help apps determine location.',
-    modifierTitle: '',
+    modifierTitle: 'Dekorasi',
     hasModifier: false
   },
   { _id: '10sd', name: 'Smoked Beed & Mozarella Bitterballen', price: 38000, imgUrl: imgUrl4, 
     hasVariant: false, 
+    isFavourite: false,
     category: 'coffee',
     description: 'Let Google help apps determine location.',
-    modifierTitle: '',
+    modifierTitle: 'Dekorasi',
     hasModifier: false
   }
   ]

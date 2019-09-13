@@ -1,15 +1,15 @@
 import React, { useState, useContext, useEffect } from 'react';
 import MediaQuery from 'react-responsive';
-import { ProductContext } from '../context/ProductContextProvider';
-import { GlobalContext } from '../context/GlobalContextProvider';
-import { ShopContext } from '../context/ShopContextProvider';
+import { ProductContext } from '../../context/ProductContextProvider';
+import { GlobalContext } from '../../context/GlobalContextProvider';
+import { ShopContext } from '../../context/ShopContextProvider';
 import './Products.css';
-import CartPage from './Cart';
-import SelectCategory from '../components/SelectCategory';
-import ItemCard from '../components/ItemCard';
-import ItemCardList from '../components/ItemCardList';
-import NewItem from '../components/NewItem';
-import SearchBoxV2 from '../components/SearchBoxV2';
+import CartPage from '../Cart';
+import SelectCategory from '../../components/SelectCategory';
+import ItemCard from '../../components/ItemCard';
+import ItemCardList from '../../components/ItemCardList';
+import NewItem from '../../components/NewItem';
+import SearchBoxV2 from '../../components/SearchBoxV2';
 import IconButton from '@material-ui/core/IconButton';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Button from '@material-ui/core/Button';
@@ -24,7 +24,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import Typography from '@material-ui/core/Typography';
 import uuid from 'uuid';
-import { MediaQueryContext } from '../context/MediaQueryContextProvider';
+import { MediaQueryContext } from '../../context/MediaQueryContextProvider';
 import ProductTable from './ProductTable'
 import ReactTable from 'react-table';
 import 'react-table/react-table.css'

@@ -16,32 +16,32 @@ const useStyles = makeStyles(theme => ({
     }
   }));
 
-export default function InputVariant({variantTitle, handleChange, variantData, setVariantData}){
+export default function InputModifier({modifierTitle, handleChange, modifierData, setModifierData}){
   const classes = useStyles();
-    const [variants, setVariants] = useState([uuid.v4()]);
+    const [modifiers, setModifiers] = useState([uuid.v4()]);
     const [count, setCount] = useState(1);
 
-    function addInputVariant(){
-        let vars = variants;
+    function addInputModifier(){
+        let vars = modifiers;
         vars.push(uuid.v4());
-        console.log(variants);
-        setVariants(vars);
+        console.log(modifiers);
+        setModifiers(vars);
         setCount(count+1);
     }
 
-    function removeInputVariant(variant, index){
-        let vars = variants;
+    function removeInputModifier(modifier, index){
+        let vars = modifiers;
         vars.splice(index, 1);
-        setVariants(vars);
+        setModifiers(vars);
         setCount(count-1);
-        let da = variantData;
-        delete da[variant];
-        setVariantData(da);
+        let da = modifierData;
+        delete da[modifier];
+        setModifierData(da);
 
     }
 
-    function VariantName(e){
-        let da = variantData;
+    function modifierName(e){
+        let da = modifierData;
         if(da[e.target.name]){
             da[e.target.name]['label'] = e.target.value
         } else {
@@ -50,11 +50,11 @@ export default function InputVariant({variantTitle, handleChange, variantData, s
             }
         }
         
-        setVariantData(da);
+        setModifierData(da);
     }
 
-    function VariantPrice(e){
-        let da = variantData;
+    function modifierPrice(e){
+        let da = modifierData;
         if(da[e.target.name]){
             da[e.target.name]['price'] = Number(e.target.value)
         } else {
@@ -63,35 +63,35 @@ export default function InputVariant({variantTitle, handleChange, variantData, s
             }
         }
         
-        setVariantData(da);
+        setModifierData(da);
     }
 
     return (
         <div>
-        <div className="legend"><strong>JUDUL VARIASI</strong></div>
+        <div className="legend"><strong>JUDUL MODIFIER</strong></div>
                 <TextField
                 id="outlined-multiline-static"
-                placeholder="Size"
+                placeholder="Topping"
                 margin="normal"
                 variant="outlined"
                 type="text"
                 onChange={handleChange}
-                value={variantTitle}
-                name="variant-title"
+                value={modifierTitle}
+                name="modifier-title"
                 />
-        { variants.map( (variant, index) => (
-            <div key={variant} style={{ display: 'flex', justifyContent: 'space-around', paddingTop: '10px'}}>
+        { modifiers.map( (modifier, index) => (
+            <div key={modifier} style={{ display: 'flex', justifyContent: 'space-around', paddingTop: '10px'}}>
               <div className={classes.flexItem}>
-                <div className="legend"><strong>Nama Variasi</strong></div>
+                <div className="legend"><strong>Nama Modifier</strong></div>
                 <TextField
                 id="outlined-multiline-static"
                 fullWidth
                 margin="normal"
                 variant="outlined"
                 type="text"
-                placeholder="Large"
-                onChange={VariantName}
-                name={variant}
+                placeholder="Keju"
+                onChange={modifierName}
+                name={modifier}
                 />
               </div>
 
@@ -102,30 +102,27 @@ export default function InputVariant({variantTitle, handleChange, variantData, s
                 fullWidth
                 margin="normal"
                 variant="outlined"
-                placeholder="25000"
+                placeholder="5000"
                 type="number"
-                onChange={VariantPrice}
-                name={variant}
+                onChange={modifierPrice}
+                name={modifier}
 
                 />
               </div>
               <div className={classes.flexItem} style={{ paddingTop: '35px'}}>
-                  
-                      { index === variants.length - 1 ?
-                        <IconButton onClick={addInputVariant}>
+                    { index === modifiers.length - 1 ?
+                        <IconButton onClick={addInputModifier}>
                             <AddCircleOutline color="primary" />
                         </IconButton>
                         :
-                        <IconButton onClick={ () => removeInputVariant(variant, index)}>
+                        <IconButton onClick={ () => removeInputModifier(modifier, index)}>
                             <RemoveCircleOutline color="secondary" />
                         </IconButton>
-                    }
+                        }
                       
-                  
                 </div>
         </div>
         ))}
-        <hr/>
         </div>
     )
 }

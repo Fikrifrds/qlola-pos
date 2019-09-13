@@ -5,7 +5,11 @@ const imgUrl2 = 'https://ik.imagekit.io/qlola/tr:w-200/products/sandwich.jpg';
 const imgUrl3 = 'https://ik.imagekit.io/qlola/tr:w-200/products/tea.jpg';
 const imgUrl4 = 'https://ik.imagekit.io/qlola/tr:w-200/products/cappuccino.jpg';
 const products = [
-  { _id: '1aa', name: 'Americano', price: 20000, imgUrl: imgUrl1,
+  { _id: '1aa', 
+  isFavorite: true,
+  name: 'Americano', 
+  price: 20000, 
+  imgUrl: imgUrl1,
   category: 'coffee',
   hasVariant: true,
   hasModifier: false,
@@ -20,6 +24,7 @@ const products = [
   description: 'Let Google help apps determine location.' 
 },
   { _id: '2bb', name: 'Chicken Sandwich', price: 30000, imgUrl: imgUrl2, hasVariant: true, 
+  isFavorite: false,
   category: 'snack',
   variant: { 'www' : { label: 'Double', price: 25000}, 'aaa': { label: 'Triple', price: 40000} }, 
   variantDefault: 'www', description: 'Let Google help apps determine location.',
@@ -32,12 +37,14 @@ const products = [
   }
   },
   { _id: '3cc', name: 'Green Tea', price: 25000, imgUrl: imgUrl3, 
+  isFavorite: true,
   hasVariant: false, 
   hasModifier: false,
   category: 'tea',
   variant: {}, variantDefault: '', description: 'Let Google help apps determine location.' },
   { _id: '4dd', name: 'Cappuccino Extra Coffee', price: 40000, imgUrl: imgUrl4, 
   hasVariant: false, 
+  isFavorite: false,
   category: 'coffee',
   description: 'Let Google help apps determine location.',
   modifierTitle: 'Dekorasi',
@@ -48,6 +55,7 @@ const products = [
   }},
   { _id: '5sd', name: 'Chicken Basil Pesto Panini', price: 55000, imgUrl: imgUrl4, 
   hasVariant: false, 
+  isFavorite: true,
   category: 'coffee',
   description: 'Let Google help apps determine location.',
   modifierTitle: 'Dekorasi',
@@ -55,6 +63,7 @@ const products = [
   },
   { _id: '6sd', name: 'Smoked Beed & Mozarella Bitterballen', price: 38000, imgUrl: imgUrl4, 
   hasVariant: false, 
+  isFavorite: true,
   category: 'coffee',
   description: 'Let Google help apps determine location.',
   modifierTitle: 'Dekorasi',
@@ -62,6 +71,7 @@ const products = [
 },
 { _id: '8sd', name: 'Smoked Beed & Mozarella Bitterballen', price: 38000, imgUrl: imgUrl4, 
   hasVariant: false, 
+  isFavorite: false,
   category: 'coffee',
   description: 'Let Google help apps determine location.',
   modifierTitle: 'Dekorasi',
@@ -69,6 +79,7 @@ const products = [
 },
 { _id: '9sd', name: 'Smoked Beed & Mozarella Bitterballen', price: 38000, imgUrl: imgUrl4, 
   hasVariant: false, 
+  isFavorite: false,
   category: 'coffee',
   description: 'Let Google help apps determine location.',
   modifierTitle: 'Dekorasi',
@@ -76,6 +87,7 @@ const products = [
 },
 { _id: '10sd', name: 'Smoked Beed & Mozarella Bitterballen', price: 38000, imgUrl: imgUrl4, 
   hasVariant: false, 
+  isFavorite: false,
   category: 'coffee',
   description: 'Let Google help apps determine location.',
   modifierTitle: 'Dekorasi',
@@ -92,8 +104,8 @@ const products = [
 
   const selectCategory = (inputCategory, state) => {
     const data = products;
-    const filteredProducts = inputCategory ? data.filter( product => product.category === inputCategory) : data;
-    console.log('filteredProducts', filteredProducts)
+    const filteredProducts = inputCategory ? inputCategory === 'favorite' ? data.filter( product => product.isFavorite) : data.filter( product => product.category === inputCategory) : data;
+    console.log('filteredProducts', filteredProducts);
     return { ...state, products: filteredProducts};
   }
 

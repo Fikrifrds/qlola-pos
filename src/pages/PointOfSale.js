@@ -3,7 +3,7 @@ import MediaQuery from 'react-responsive';
 import { ProductContext } from '../context/ProductContextProvider';
 import { GlobalContext } from '../context/GlobalContextProvider';
 import { ShopContext } from '../context/ShopContextProvider';
-import './Products.css';
+import './Product/Products.css';
 import CartPage from './Cart';
 import SelectCategory from '../components/SelectCategory';
 import ItemCard from '../components/ItemCard';
