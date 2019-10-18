@@ -129,7 +129,7 @@ export default function BottomAppBar() {
             </div> */}
             { ['/', '/cart'].includes(window.location.pathname) &&
 <div style={{ minWidth:"20%"}}>
-<Button onClick={ price ? openCheckOut : () => {}} fullWidth  variant="contained" style={{ cursor: `${price ? 'pointer' : 'not-allowed'}`}} color={ price ? 'inherit' : 'default'}>
+<Button onClick={ price ? openCheckOut : () => {}} fullWidth  variant="contained" style={{ cursor: `${price ? 'pointer' : 'not-allowed'}`}} color={ price ? 'secondary' : 'default'}>
   <span style={{ fontSize: isDesktopOrLaptop && '20px'}}>Pay Rp {price.toLocaleString('id')}</span>
 </Button>
 </div>

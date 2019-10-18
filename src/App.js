@@ -26,7 +26,6 @@ const App = props => {
       <CssBaseline />
       <GlobalState>
       <ShopState>
-       
       <ProductState>
         <BrowserRouter>
         <>

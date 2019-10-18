@@ -119,7 +119,7 @@ export default function InputVariant({variantTitle, handleChange, variantData, s
                         <IconButton onClick={ () => removeInputVariant(variant, index)}>
                             <RemoveCircleOutline color="secondary" />
                         </IconButton>
-                    }
+                        }
                       
                   
                 </div>
